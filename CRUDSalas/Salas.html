@@ -26,8 +26,8 @@
                 </div>           
             </div>
             <!-- The Modal --> 
-            <div class="modal modal-lg fade" data-bs-backdrop="static" id="myModal">
-                <div class="modal-dialog">
+            <div class="modal fade" data-bs-backdrop="static" id="myModal">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                     
                         <!-- Modal Header -->
@@ -42,20 +42,32 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col">                                        
-                                            <label for="texto de ejemplo" class="form-label">Nombre museo</label>
-                                            <input name="nombreMuseo" type="text" id="nombreMuseo" min="0" max="255" placeholder="" class="form-control">        
+                                            <label for="texto de ejemplo" class="form-label">Sala</label>
+                                            <input name="sala" type="text" id="sala" min="0" max="150" placeholder="" class="form-control">        
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">                                        
-                                            <label for="texto de ejemplo" class="form-label">Ubicación</label>
-                                            <input name="ubicacion" type="text" id="ubicacion" min="0" max="11" placeholder="" class="form-control">        
+                                            <label for="texto de ejemplo" class="form-label">Piso</label>
+                                            <input name="piso" type="text" id="piso" min="0" max="150" placeholder="" class="form-control">        
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">                                        
-                                            <label for="texto de ejemplo" class="form-label">Tipo de museo</label>
-                                            <input name="tipoMuseo" type="text" id="tipoMuseo" min="0" max="255" placeholder="" class="form-control">        
+                                            <label for="texto de ejemplo" class="form-label">Sector</label>
+                                            <input name="sector" type="text" id="sector" min="0" max="150" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Punto inteligente</label>
+                                            <input name="PuntoInteligente" type="text" id="PuntoInteligente" min="150" max="255" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Museo</label>
+                                            <input name="idMuseo" type="text" id="idMuseo" min="0" max="11" placeholder="" class="form-control">        
                                         </div>
                                     </div>
                                 </div>
@@ -77,10 +89,12 @@
                         <thead>
                             <tr>
                                 <th class='xd'>Acciones</th>
-                                <th class='xd'>ID Museo</th>
-                                <th class='xd'>Nombre de Museo</th>
-                                <th class='xd'>ubicacion</th>
-                                <th class='xd'>Descripción</th>
+                                <th class='xd'>ID Sala</th>
+                                <th class='xd'>sala</th>
+                                <th class='xd'>piso</th>
+                                <th class='xd'>Sector</th>
+                                <th class='xd'>Punto inteligente</th>
+                                <th class='xd'>Museo</th>
                             </tr>
                         </thead>
                         <tbody  id="tabla1">
@@ -90,8 +104,8 @@
                 </div>
                 <!--<div class="col-2">-->
                     <!-- The Modal -->
-                    <div class="modal modal-lg fade" data-bs-backdrop="static" id="modalUD">
-                        <div class="modal-dialog">
+                    <div class="modal fade" data-bs-backdrop="static" id="modalUD">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <form id="formUD">
                                     <!-- Modal Header -->
@@ -112,20 +126,32 @@
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col">                                        
-                                                    <label for="texto de ejemplo" class="form-label">Nombre museo</label>
-                                                    <input name="nombreMuseoUD" type="text" id="nombreMuseoUD" min="0" max="255" placeholder="" class="form-control">        
+                                                    <label for="texto de ejemplo" class="form-label">Sala</label>
+                                                    <input name="salaUD" type="text" id="salaUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
-                                                    <label for="texto de ejemplo" class="form-label">Ubicación</label>
-                                                    <input name="ubicacionUD" type="text" id="ubicacionUD" min="0" max="11" placeholder="" class="form-control">        
+                                                    <label for="texto de ejemplo" class="form-label">Piso</label>
+                                                    <input name="pisoUD" type="text" id="pisoUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
-                                                    <label for="texto de ejemplo" class="form-label">Tipo de museo</label>
-                                                    <input name="tipoMuseoUD" type="text" id="tipoMuseoUD" min="0" max="255" placeholder="" class="form-control">        
+                                                    <label for="texto de ejemplo" class="form-label">Sector</label>
+                                                    <input name="sectorUD" type="text" id="sectorUD" min="0" max="150" placeholder="" class="form-control">        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Punto inteligente</label>
+                                                    <input name="PuntoInteligenteUD" type="text" id="PuntoInteligenteUD" min="0" max="150" placeholder="" class="form-control">        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Museo</label>
+                                                    <input name="idMuseoUD" type="text" id="idMuseoUD" min="0" max="11" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                         </div>
@@ -167,7 +193,7 @@ $(document).ready(function()
                 if(r == 1)
                 {
                     alert("agregado con exito");
-                    $("#ordenarNomb").val(nombreMuseo.value)
+                    $("#ordenarNomb").val(salaMuseo.value)
                     cargarTabla();
                     $("#myModal").modal('hide')
                 }else
@@ -191,24 +217,24 @@ $(document).ready(function()
     
         if(datos[0].value.length == 0 || datos[0].value.length > 255)
         {   
-            alert("Nombre no valido")
-            //console.log("Nombre completo no valido",datos[0].value.length)
+            alert("sala no valido")
+            //console.log("sala completo no valido",datos[0].value.length)
             valido = false
             return valido;
         }
         else
         {
-            //console.log("Nombre completo valido",datos[0].value, datos[0].value.length)
+            //console.log("sala completo valido",datos[0].value, datos[0].value.length)
             if(datos[1].value < 9999999 || datos[1].value > 100000000)
             { 
-                alert("ubicacion no valido")
-                //console.log("ubicacion no valido",datos[1].value.length)
+                alert("piso no valido")
+                //console.log("piso no valido",datos[1].value.length)
                 valido = false
                 return valido;
             }
             else
             {
-                //console.log("ubicacion valido", datos[1].value.length)
+                //console.log("piso valido", datos[1].value.length)
                 if(datos[2].value.length == 0 || datos[2].value.length > 255)
                 {
                     alert("Correo eletronico no valido")
@@ -242,7 +268,7 @@ $(document).ready(function()
                             console.log("Await:", x)
                             if(x == false)
                             {
-                                alert("ubicacion o tipoMuseo ya registrado")
+                                alert("piso o tipoMuseo ya registrado")
                                 valido = false
                                 return valido;
                                 
@@ -263,8 +289,7 @@ $(document).ready(function()
     {
     var editarDatos = $("#formUD").serializeArray();
         //Variable para el crud origina 
-        //que se sta usando para el modelo//var datos = [editarDatos[1], editarDatos[2], editarDatos[3], editarDatos[4], editarDatos[5]] 
-        
+        //que se sta usando para el modelo//var dat = [editarDatos[1], editarDatos[2], editarDatos[3], editarDatos[4], editarDatos[5]] 
         //if(validarDatos(datos))
         // {
             $.ajax({
@@ -277,7 +302,7 @@ $(document).ready(function()
                     {
 
                     alert("datos modificados con exito")
-                    $("#ordenarNomb").val(nombreMuseoUD.value)
+                    $("#ordenarNomb").val(salaUD.value)
                     cargarTabla()
                     $("#modalUD").modal('hide')
 
@@ -320,20 +345,28 @@ $(document).ready(function()
         $("#editData").show()
         $("#deleteData").hide()
         
-        $("#idUD").val(value.id_museo)
-        $("#idUD").attr('placeholder', value.id_museo) 
+        $("#idUD").UDval(value.id_sala)
+        $("#idUD").attr('placeholder', value.id_sala) 
         
-        $("#nombreMuseoUD").val(value.nombre)
-        $("#nombreMuseoUD").attr('placeholder', value.nombre) 
-        $("#nombreMuseoUD").attr('readonly', false)
+        $("#salaUD").val(value.sala)
+        $("#salaUD").attr('placeholder', value.sala) 
+        $("#salaUD").attr('readonly', false)
         
-        $("#ubicacionUD").val(value.ubicacion)
-        $("#ubicacionUD").attr('placeholder', value.ubicacion) 
-        $("#ubicacionUD").attr('readonly', false)
+        $("#pisoUD").val(value.piso)
+        $("#pisoUD").attr('placeholder', value.piso) 
+        $("#pisoUD").attr('readonly', false)
         
-        $("#tipoMuseoUD").val(value.tipo_museo)
-        $("#tipoMuseoUD").attr('placeholder', value.tipo_museo) 
-        $("#tipoMuseoUD").attr('readonly', false)
+        $("#sectorUD").val(value.sector)
+        $("#sectorUD").attr('placeholder', value.sector) 
+        $("#sectorUD").attr('readonly', false)
+
+        $("#PuntoInteligenteUD").val(value.punto_inteligente)
+        $("#PuntoInteligenteUD").attr('placeholder', value.punto_inteligente) 
+        $("#PuntoInteligenteUD").attr('readonly', true)
+
+        $("#idMuseoUD").val(value.id_museo)
+        $("#idMuseoUD").attr('placeholder', value.id_museo) 
+        $("#idMuseoUD").attr('readonly', true)
     }
 
     function cargarFormDelete(value)
@@ -341,34 +374,42 @@ $(document).ready(function()
         $("#deleteData").show()
         $("#editData").hide()
 
-        $("#idUD").val(value.id_museo)
-        $("#idUD").attr('placeholder', value.id_museo) 
+        $("#idUD").val(value.id_sala)
+        $("#idUD").attr('placeholder', value.id_sala) 
         
-        $("#nombreMuseoUD").val(value.nombre)
-        $("#nombreMuseoUD").attr('placeholder', value.nombre) 
-        $("#nombreMuseoUD").attr('readonly', true)
+        $("#salaUD").val(value.sala)
+        $("#salaUD").attr('placeholder', value.sala) 
+        $("#salaUD").attr('readonly', true)
         
-        $("#ubicacionUD").val(value.ubicacion)
-        $("#ubicacionUD").attr('placeholder', value.ubicacion) 
-        $("#ubicacionUD").attr('readonly', true)
+        $("#pisoUD").val(value.piso)
+        $("#pisoUD").attr('placeholder', value.piso) 
+        $("#pisoUD").attr('readonly', true)
         
-        $("#tipoMuseoUD").val(value.tipo_museo)
-        $("#tipoMuseoUD").attr('placeholder', value.tipo_museo) 
-        $("#tipoMuseoUD").attr('readonly', true)
+        $("#sectorUD").val(value.sector)
+        $("#sectorUD").attr('placeholder', value.sector) 
+        $("#sectorUD").attr('readonly', true)
+
+        $("#PuntoInteligenteUD").val(value.punto_inteligente)
+        $("#PuntoInteligenteUD").attr('placeholder', value.punto_inteligente) 
+        $("#PuntoInteligenteUD").attr('readonly', true)
+
+        $("#idMuseoUD").val(value.id_museo)
+        $("#idMuseoUD").attr('placeholder', value.id_museo) 
+        $("#idMuseoUD").attr('readonly', true)
     }
     //Función para necesaria solamente para el crud original   
     /*async function validarRepetidos(array)
     {   
         var noRepetido = false
 
-        var ubicacion = array[1].value
+        var piso = array[1].value
         var tipoMuseo = array[2].value
-        console.log("ubicacion y tipoMuseo", ubicacion, tipoMuseo)
+        console.log("piso y tipoMuseo", piso, tipoMuseo)
         
         var ajax = $.ajax({
             url: "BackendMuseo.php", //action
             type: "POST", //method
-            data: {"funcion": 2, "ubicacion": ubicacion, "tipoMuseo": tipoMuseo},
+            data: {"funcion": 2, "piso": piso, "tipoMuseo": tipoMuseo},
             success: 
             function(respuesta){
                 let check = true
@@ -380,12 +421,12 @@ $(document).ready(function()
 
         var box = JSON.parse(result)
         
-        var ubicacionAjax = box[0].ubicacion
+        var pisoAjax = box[0].piso
         var tipoMuseoAjax = box[1].tipoMuseo
 
-        if(ubicacionAjax == ubicacion)
+        if(pisoAjax == piso)
         {
-            console.log("ubicacion repetido")
+            console.log("piso repetido")
             noRepetido = false  
             return noRepetido;
         }
@@ -414,9 +455,9 @@ $(document).ready(function()
         //{
             //console.log("if")
             $.ajax({
-            url: "BackendMuseo.php", //action
+            url: "BackendSalas.php", //action
             type: "POST", //method
-            //data: {"id_museo": id}, 
+            //data: {"id_sala": id}, 
             //dataType: "json",
             success: function(respuesta){
                 console.log(respuesta)
@@ -439,10 +480,12 @@ $(document).ready(function()
                             "</button>"+
                         "</div>"+
                     "</td>"+
+                    "<td class='xd'>"+value.id_sala+"</td>"+
+                    "<td class='xd'>"+value.sala+"</td>"+
+                    "<td class='xd'>"+value.piso+"</td>"+
+                    "<td class='xd'>"+value.sector+"</td>"+
+                    "<td class='xd'>"+value.punto_inteligente+"</td>"+
                     "<td class='xd'>"+value.id_museo+"</td>"+
-                    "<td class='xd'>"+value.nombre+"</td>"+
-                    "<td class='xd'>"+value.ubicacion+"</td>"+
-                    "<td class='xd'>"+value.tipo_museo+"</td>"+
                     "</tr>") 
                     
                     $("#edit"+key).on("click", function(){

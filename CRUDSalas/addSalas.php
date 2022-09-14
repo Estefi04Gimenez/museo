@@ -4,12 +4,14 @@ require 'conexion.php';
 
 
 
-$nombre = $_POST['nombreMuseo'];
-$ubicacion = $_POST['ubicacion'];
-$tipo = $_POST['tipoMuseo'];
+$sala = $_POST['sala'];
+$piso = $_POST['piso'];
+$sector = $_POST['sector'];
+$punto_inteligente = $_POST['PuntoInteligente'];
+$id_museo = $_POST['idMuseo'];
 
 
-$q = "INSERT INTO `museos`(`nombre`, `ubicacion`, `tipo_museo`) VALUES ('$nombre','$ubicacion','$tipo')";
+$q = "INSERT INTO `salas`(`sala`, `piso`, `sector`, `punto_inteligente`, `id_museo`) VALUES ('$sala','$piso','$sector','$punto_inteligente','$id_museo')";
 
 
 echo mysqli_query($con, $q)
