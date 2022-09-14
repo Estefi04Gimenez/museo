@@ -127,31 +127,31 @@
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Sala</label>
-                                                    <input name="salaUD" type="text" id="salaUD" min="0" max="150" placeholder="" class="form-control" readonly>        
+                                                    <input name="salaUD" type="text" id="salaUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Piso</label>
-                                                    <input name="pisoUD" type="text" id="pisoUD" min="0" max="150" placeholder="" class="form-control" readonly>        
+                                                    <input name="pisoUD" type="text" id="pisoUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Sector</label>
-                                                    <input name="sectorUD" type="text" id="sectorUD" min="0" max="150" placeholder="" class="form-control" readonly>        
+                                                    <input name="sectorUD" type="text" id="sectorUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Punto inteligente</label>
-                                                    <input name="PuntoInteligenteUD" type="text" id="PuntoInteligenteUD" min="0" max="150" placeholder="" class="form-control" readonly>        
+                                                    <input name="PuntoInteligenteUD" type="text" id="PuntoInteligenteUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Museo</label>
-                                                    <input name="idMuseoUD" type="text" id="idMuseoUD" min="0" max="11" placeholder="" class="form-control" readonly>        
+                                                    <input name="idMuseoUD" type="text" id="idMuseoUD" min="0" max="11" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                         </div>
@@ -345,7 +345,7 @@ $(document).ready(function()
         $("#editData").show()
         $("#deleteData").hide()
         
-        $("#idUD").val(value.id_sala)
+        $("#idUD").UDval(value.id_sala)
         $("#idUD").attr('placeholder', value.id_sala) 
         
         $("#salaUD").val(value.sala)
@@ -362,7 +362,7 @@ $(document).ready(function()
 
         $("#PuntoInteligenteUD").val(value.punto_inteligente)
         $("#PuntoInteligenteUD").attr('placeholder', value.punto_inteligente) 
-        $("#PuntoInteligenteUD").attr('readonly', false)
+        $("#PuntoInteligenteUD").attr('readonly', true)
 
         $("#idMuseoUD").val(value.id_museo)
         $("#idMuseoUD").attr('placeholder', value.id_museo) 
