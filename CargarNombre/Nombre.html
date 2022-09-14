@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap-5.0.2/dist/css/bootstrap.css">
+    <script src="../bootstrap-5.0.2/dist/js/bootstrap.js"></script>
+    <script src="../bootstrap-5.0.2/jquery-3.6.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="nombreEnTitulo">pana</h1>
+    <button id="Boton">xd</button>
+    <select id="id">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+</body>
+<script>
+
+$('#Boton').on('click', function(){
+    var id = $('#id').val()
+    id = Number(id)
+    $.ajax({
+        type:"POST",    
+            url:"ConsultarNombre.php",
+            data: {"id": id},
+            error: function (response) {
+            $('#nombreEnTitulo').html(response.value)
+        }
+    });    
+})
+
+</script>

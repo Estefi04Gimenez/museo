@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap-5.0.2/dist/css/bootstrap.css">
+    <script src="../bootstrap-5.0.2/dist/js/bootstrap.js"></script>
+    <script src="../bootstrap-5.0.2/jquery-3.6.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                      <h1>Consulta a base de datos</h1>      
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-2">
+                    <button id="cargarTabla" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
+                </div>
+                <div class="d-grid col-2">
+                    <button id="botonModal" type="button" class="btn text-center mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">+</button>
+                </div>           
+            </div>
+            <!-- The Modal --> 
+            <div class="modal modal-lg fade" data-bs-backdrop="static" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Añadir datos</h4>
+                            <button id="closeModal(1)" type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                    
+                        <!-- Modal body -->
+                        <div class="container"> 
+                            <form id="formAdd">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Nombre museo</label>
+                                            <input name="nombreMuseo" type="text" id="nombreMuseo" min="0" max="255" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Ubicación</label>
+                                            <input name="ubicacion" type="text" id="ubicacion" min="0" max="11" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Tipo de museo</label>
+                                            <input name="tipoMuseo" type="text" id="tipoMuseo" min="0" max="255" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>    
+                        </div>
+
+                            <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button id="closeModal2(1)" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button id="addData" type="button" class="btn btn-primary xd">enviar</button>
+                        </div>        
+                    </div>
+                </div>      
+            </div>   
+            
+            <div class="row">
+                <div class="col">   
+                    <table class="table table-bordered table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th class='xd'>Acciones</th>
+                                <th class='xd'>ID Museo</th>
+                                <th class='xd'>Nombre de Museo</th>
+                                <th class='xd'>ubicacion</th>
+                                <th class='xd'>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody  id="tabla1">
+                           
+                        </tbody>
+                    </table>    
+                </div>
+                <!--<div class="col-2">-->
+                    <!-- The Modal -->
+                    <div class="modal modal-lg fade" data-bs-backdrop="static" id="modalUD">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form id="formUD">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <div class="col-5">
+                                            <h4 class="modal-title">Editar datos</h4>
+                                        </div>
+                                        <div class="col-2">
+                                            <label>id</label><input type="text" class="form-control" name="idUD" id="idUD" readonly>
+                                        </div>
+                                        <div class="col-5 text-end">  
+                                            <button id="closeModalUD" type="button" onclick="" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Modal body -->
+                                    <div class="container"> 
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Nombre museo</label>
+                                                    <input name="nombreMuseoUD" type="text" id="nombreMuseoUD" min="0" max="255" placeholder="" class="form-control">        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Ubicación</label>
+                                                    <input name="ubicacionUD" type="text" id="ubicacionUD" min="0" max="11" placeholder="" class="form-control">        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Tipo de museo</label>
+                                                    <input name="tipoMuseoUD" type="text" id="tipoMuseoUD" min="0" max="255" placeholder="" class="form-control">        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>  
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button id="closeModalUD2" type="button" class="btn btn-danger"  data-bs-dismiss="modal">Cancelar</button>
+                                    <button id="editData" type="button" class="btn btn-primary xd" >enviar</button>
+                                    <button id="deleteData" type="button" class="btn btn-danger xd" >eliminar</button>
+                                </div>        
+                            </div>
+                        </div>  
+                    </div>
+                <!--</div>-->
+            </div>
+        </div>
+    </body>
+    </html>
+    
+<script>
+
+$(document).ready(function()
+{
+    
+    async function confirmAdd()
+    {
+    var datos = $('#formAdd').serializeArray();
+    
+    // var validcion = await validarDatos(datos) 
+    //if (validcion == true) 
+   // {
+       // console.log("validacion exitosa")
+        $.ajax({
+            type:"POST",    
+            url:"addMuseo.php",
+            data: datos,
+            success:function(r){
+                if(r == 1)
+                {
+                    alert("agregado con exito");
+                    $("#ordenarNomb").val(nombreMuseo.value)
+                    cargarTabla();
+                    $("#myModal").modal('hide')
+                }else
+                {
+                    alert("Fallo");
+                }
+            }
+        })
+   // }
+    //else
+   // {
+       // console.log("algo anda mal")
+   // }  
+    }
+    $("#addData").on("click", function(){confirmAdd() }) 
+
+    //Función para necesaria solamente para el crud original   
+    /* async function validarDatos(datos)
+    {
+        var valido = true
+    
+        if(datos[0].value.length == 0 || datos[0].value.length > 255)
+        {   
+            alert("Nombre no valido")
+            //console.log("Nombre completo no valido",datos[0].value.length)
+            valido = false
+            return valido;
+        }
+        else
+        {
+            //console.log("Nombre completo valido",datos[0].value, datos[0].value.length)
+            if(datos[1].value < 9999999 || datos[1].value > 100000000)
+            { 
+                alert("ubicacion no valido")
+                //console.log("ubicacion no valido",datos[1].value.length)
+                valido = false
+                return valido;
+            }
+            else
+            {
+                //console.log("ubicacion valido", datos[1].value.length)
+                if(datos[2].value.length == 0 || datos[2].value.length > 255)
+                {
+                    alert("Correo eletronico no valido")
+                    //console.log("tipoMuseo no valido",datos[2].value.length)
+                    valido = false
+                    return valido;
+                }
+                else
+                {
+                    //console.log("tipoMuseo valido",datos[2].value.length)
+                    if(datos[3].value.length == 0 || datos[3].value.length > 255)
+                    {
+                        alert("Contraseña no valida")
+                        //console.log("contraseña no valida",datos[3].value.length)
+                        valido = false
+                        return valido;
+                    }
+                    else
+                    {
+                        //console.log("contraseña valida",datos[3].value.length)
+                        if(datos[4].value != "A" && datos[4].value != "U"  || datos[4].value.length == 0 || datos[4].value.length > 1)
+                        {
+                            alert("Tipo de usuario no valido")
+                            //console.log("tipo de usuario no valido",datos[4].value.length)
+                            valido = false
+                            return valido;
+                        }
+                        else
+                        {
+                            x = await validarRepetidos(datos)
+                            console.log("Await:", x)
+                            if(x == false)
+                            {
+                                alert("ubicacion o tipoMuseo ya registrado")
+                                valido = false
+                                return valido;
+                                
+                            }
+                            else
+                            {
+                                return valido;
+                                //console.log("tipo de usuario valida",datos[4].value.length)
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+    }*/
+
+    function confirmEdit()
+    {
+    var editarDatos = $("#formUD").serializeArray();
+        //Variable para el crud origina 
+        //que se sta usando para el modelo//var datos = [editarDatos[1], editarDatos[2], editarDatos[3], editarDatos[4], editarDatos[5]] 
+        
+        //if(validarDatos(datos))
+        // {
+            $.ajax({
+            url: "RenameMuseo.php",
+            type: "POST",
+            data: editarDatos,
+            success: function(r)
+            {
+                if (r == 1) 
+                    {
+
+                    alert("datos modificados con exito")
+                    $("#ordenarNomb").val(nombreMuseoUD.value)
+                    cargarTabla()
+                    $("#modalUD").modal('hide')
+
+                    }
+                }
+            })
+        // }
+        //else
+        //{
+            //console.log("algo anda mal")
+        // }
+    }
+
+    function confirmDelete()
+    {
+        var eliminarDatos = $("#formUD").serializeArray();
+        //console.log("editarDatos: ", eliminarDatos)
+        $.ajax({
+        url: "DeleteMuseo.php",
+        type: "POST",
+        data: eliminarDatos,
+        success: function(r){
+            if (r == 1) 
+                {
+                
+                alert("datos Eliminados")
+                cargarTabla()
+                $("#modalUD").modal('hide')
+                
+                }
+            }
+        })
+    }
+
+    $("#editData").on("click", function(){confirmEdit() }) 
+    $("#deleteData").on("click", function(){confirmDelete()}) 
+
+    function cargarFormEdit(value)
+    {
+        $("#editData").show()
+        $("#deleteData").hide()
+        
+        $("#idUD").val(value.id_museo)
+        $("#idUD").attr('placeholder', value.id_museo) 
+        
+        $("#nombreMuseoUD").val(value.nombre)
+        $("#nombreMuseoUD").attr('placeholder', value.nombre) 
+        $("#nombreMuseoUD").attr('readonly', false)
+        
+        $("#ubicacionUD").val(value.ubicacion)
+        $("#ubicacionUD").attr('placeholder', value.ubicacion) 
+        $("#ubicacionUD").attr('readonly', false)
+        
+        $("#tipoMuseoUD").val(value.tipo_museo)
+        $("#tipoMuseoUD").attr('placeholder', value.tipo_museo) 
+        $("#tipoMuseoUD").attr('readonly', false)
+    }
+
+    function cargarFormDelete(value)
+    {
+        $("#deleteData").show()
+        $("#editData").hide()
+
+        $("#idUD").val(value.id_museo)
+        $("#idUD").attr('placeholder', value.id_museo) 
+        
+        $("#nombreMuseoUD").val(value.nombre)
+        $("#nombreMuseoUD").attr('placeholder', value.nombre) 
+        $("#nombreMuseoUD").attr('readonly', true)
+        
+        $("#ubicacionUD").val(value.ubicacion)
+        $("#ubicacionUD").attr('placeholder', value.ubicacion) 
+        $("#ubicacionUD").attr('readonly', true)
+        
+        $("#tipoMuseoUD").val(value.tipo_museo)
+        $("#tipoMuseoUD").attr('placeholder', value.tipo_museo) 
+        $("#tipoMuseoUD").attr('readonly', true)
+    }
+    //Función para necesaria solamente para el crud original   
+    /*async function validarRepetidos(array)
+    {   
+        var noRepetido = false
+
+        var ubicacion = array[1].value
+        var tipoMuseo = array[2].value
+        console.log("ubicacion y tipoMuseo", ubicacion, tipoMuseo)
+        
+        var ajax = $.ajax({
+            url: "BackendMuseo.php", //action
+            type: "POST", //method
+            data: {"funcion": 2, "ubicacion": ubicacion, "tipoMuseo": tipoMuseo},
+            success: 
+            function(respuesta){
+                let check = true
+                var box = JSON.parse(respuesta)
+            }
+        })
+        await ajax 
+        const result = await ajax 
+
+        var box = JSON.parse(result)
+        
+        var ubicacionAjax = box[0].ubicacion
+        var tipoMuseoAjax = box[1].tipoMuseo
+
+        if(ubicacionAjax == ubicacion)
+        {
+            console.log("ubicacion repetido")
+            noRepetido = false  
+            return noRepetido;
+        }
+        else
+        {   
+            if(tipoMuseoAjax == tipoMuseo)
+            {
+                console.log("tipoMuseo repetido")
+                noRepetido = false  
+                return noRepetido;
+            }
+            else
+            {
+                console.log("datos no repetidos")
+                noRepetido = true  
+                return noRepetido;
+            }     
+        }
+    }*/
+
+    function cargarTabla()
+    {   
+        $("#tabla1").empty()
+        //var id = $('#cargarTabla').val()
+        //if (l != "")
+        //{
+            //console.log("if")
+            $.ajax({
+            url: "BackendMuseo.php", //action
+            type: "POST", //method
+            //data: {"id_museo": id}, 
+            //dataType: "json",
+            success: function(respuesta){
+                console.log(respuesta)
+                var box = JSON.parse(respuesta) 
+                console.log("datos cargados:",box)
+
+                $.each(box, function(key, value){
+                    //console.log("Respuesta: " + respuesta)
+                    //console.log("Key: " , key)
+                    //console.log("Value: " , value)
+
+                    $("#tabla1").append("<tr id='fila"+key+"'>"+
+                    "<td class='xd'>"+
+                        "<div class='btn-group' role='group' aria-label='Basic example'>"+
+                            "<button class='btn btn-sm btn-success text-center' id='edit"+key+"' data-bs-toggle='modal' data-bs-target='#modalUD' >"+
+                                "<img class='iconsize' src='../iconos/edit-3.svg'>"+
+                            "</button>"+
+                            "<button class='btn btn-sm btn-danger text-center' id='delete"+key+"' data-bs-toggle='modal' data-bs-target='#modalUD' >"+
+                                "<img class='iconsize' src='../iconos/trash-2.svg'>"+
+                            "</button>"+
+                        "</div>"+
+                    "</td>"+
+                    "<td class='xd'>"+value.id_museo+"</td>"+
+                    "<td class='xd'>"+value.nombre+"</td>"+
+                    "<td class='xd'>"+value.ubicacion+"</td>"+
+                    "<td class='xd'>"+value.tipo_museo+"</td>"+
+                    "</tr>") 
+                    
+                    $("#edit"+key).on("click", function(){
+                        //console.log(value)
+                        cargarFormEdit(value)
+                    })
+
+                    $("#delete"+key).on("click", function(){
+                        //console.log(value)
+                        cargarFormDelete(value)
+                    })
+                    
+                    key = key + 1
+                    
+                    })
+                }
+            })
+        //}
+    }
+
+    $("#cargarTabla").click(function(){
+        cargarTabla();
+    })
+
+})
+
+</script>
+<style>
+.sex
+{
+    border: solid, red;
+}
+
+.xd
+{
+    text-align: center;
+}
+
+.iconsize
+{
+    height: auto;
+    width: auto;
+}
+.action
+{
+    height: 40px;
+    width: 40px;
+}
+
+.altura
+{
+    height: 40px;
+}
+
+/*oculta las flechas del input Type=number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*oculta las flechas del input Type=number en firefox*/
+input[type=number] 
+{
+    -moz-appearance: textfield;
+}
+
+</style>
+</body>
+</html>
