@@ -19,26 +19,26 @@
             </div>
             <div class="row justify-content-between">
                 <div class="col-2">
-                    <button id="cargarTabla" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
+                    <button id="cargarTablaSalas" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
                 </div>
                 <div class="d-grid col-2">
-                    <button id="botonModal" type="button" class="btn text-center mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">+</button>
+                    <button id="botonModalSalas" type="button" class="btn text-center mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#myModalSalas">+</button>
                 </div>           
             </div>
             <!-- The Modal --> 
-            <div class="modal fade" data-bs-backdrop="static" id="myModal">
+            <div class="modal fade" data-bs-backdrop="static" id="myModalSalas">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                     
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">Añadir datos</h4>
-                            <button id="closeModal(1)" type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            <button id="closeModalSalas(1)" type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                     
                         <!-- Modal body -->
                         <div class="container"> 
-                            <form id="formAdd">
+                            <form id="formAddSalas">
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col">                                        
@@ -76,8 +76,8 @@
 
                             <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button id="closeModal2(1)" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                            <button id="addData" type="button" class="btn btn-primary xd">enviar</button>
+                            <button id="closeModalSalas2(1)" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button id="addDataSalas" type="button" class="btn btn-primary xd">enviar</button>
                         </div>        
                     </div>
                 </div>      
@@ -97,27 +97,27 @@
                                 <th class='xd'>Museo</th>
                             </tr>
                         </thead>
-                        <tbody  id="tabla1">
+                        <tbody  id="tablaSalas">
                            
                         </tbody>
                     </table>    
                 </div>
                 <!--<div class="col-2">-->
                     <!-- The Modal -->
-                    <div class="modal fade" data-bs-backdrop="static" id="modalUD">
+                    <div class="modal fade" data-bs-backdrop="static" id="modalUDSalas">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
-                                <form id="formUD">
+                                <form id="formUDSalas">
                                     <!-- Modal Header -->
                                     <div class="modal-header">
                                         <div class="col-5">
                                             <h4 class="modal-title">Editar datos</h4>
                                         </div>
                                         <div class="col-2">
-                                            <label>id</label><input type="text" class="form-control" name="idUD" id="idUD" readonly>
+                                            <label>id</label><input type="text" class="form-control" name="idUDSalas" id="idUDSalas" readonly>
                                         </div>
                                         <div class="col-5 text-end">  
-                                            <button id="closeModalUD" type="button" onclick="" class="btn-close" data-bs-dismiss="modal"></button>
+                                            <button id="closeModalUDSalas" type="button" onclick="" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                     </div>
                             
@@ -159,9 +159,9 @@
                                 </form>  
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button id="closeModalUD2" type="button" class="btn btn-danger"  data-bs-dismiss="modal">Cancelar</button>
-                                    <button id="editData" type="button" class="btn btn-primary xd" >enviar</button>
-                                    <button id="deleteData" type="button" class="btn btn-danger xd" >eliminar</button>
+                                    <button id="closeModalUDSalas2" type="button" class="btn btn-danger"  data-bs-dismiss="modal">Cancelar</button>
+                                    <button id="editDataSalas" type="button" class="btn btn-primary xd" >enviar</button>
+                                    <button id="deleteDataSalas" type="button" class="btn btn-danger xd" >eliminar</button>
                                 </div>        
                             </div>
                         </div>  
@@ -177,148 +177,56 @@
 $(document).ready(function()
 {
     
-    async function confirmAdd()
+    async function confirmAddSalas()
     {
-    var datos = $('#formAdd').serializeArray();
-    
-    // var validcion = await validarDatos(datos) 
-    //if (validcion == true) 
-   // {
-       // console.log("validacion exitosa")
+    var datos = $('#formAddSalas').serializeArray();
+    $.ajax({
+        type:"POST",    
+        url:"addMuseo.php",
+        data: datos,
+        success:function(r){
+            if(r == 1)
+            {
+                alert("agregado con exito");
+                $("#ordenarNomb").val(salaMuseo.value)
+                cargarTablaSalas();
+                $("#myModalSalas").modal('hide')
+            }else
+            {
+                alert("Fallo");
+            }
+        }
+    })
+    }
+    $("#addDataSalas").on("click", function(){confirmAddSalas() }) 
+
+    function confirmEditSalas()
+    {
+        var editarDatos = $("#formUDSalas").serializeArray();
+
         $.ajax({
-            type:"POST",    
-            url:"addMuseo.php",
-            data: datos,
-            success:function(r){
-                if(r == 1)
+        url: "RenameMuseo.php",
+        type: "POST",
+        data: editarDatos,
+        success: function(r)
+        {
+            if (r == 1) 
                 {
-                    alert("agregado con exito");
-                    $("#ordenarNomb").val(salaMuseo.value)
-                    cargarTabla();
-                    $("#myModal").modal('hide')
-                }else
-                {
-                    alert("Fallo");
+
+                alert("datos modificados con exito")
+                $("#ordenarNomb").val(salaUD.value)
+                cargarTablaSalas()
+                $("#modalUDSalas").modal('hide')
+
                 }
             }
         })
-   // }
-    //else
-   // {
-       // console.log("algo anda mal")
-   // }  
-    }
-    $("#addData").on("click", function(){confirmAdd() }) 
-
-    //Función para necesaria solamente para el crud original   
-    /* async function validarDatos(datos)
-    {
-        var valido = true
-    
-        if(datos[0].value.length == 0 || datos[0].value.length > 255)
-        {   
-            alert("sala no valido")
-            //console.log("sala completo no valido",datos[0].value.length)
-            valido = false
-            return valido;
-        }
-        else
-        {
-            //console.log("sala completo valido",datos[0].value, datos[0].value.length)
-            if(datos[1].value < 9999999 || datos[1].value > 100000000)
-            { 
-                alert("piso no valido")
-                //console.log("piso no valido",datos[1].value.length)
-                valido = false
-                return valido;
-            }
-            else
-            {
-                //console.log("piso valido", datos[1].value.length)
-                if(datos[2].value.length == 0 || datos[2].value.length > 255)
-                {
-                    alert("Correo eletronico no valido")
-                    //console.log("tipoMuseo no valido",datos[2].value.length)
-                    valido = false
-                    return valido;
-                }
-                else
-                {
-                    //console.log("tipoMuseo valido",datos[2].value.length)
-                    if(datos[3].value.length == 0 || datos[3].value.length > 255)
-                    {
-                        alert("Contraseña no valida")
-                        //console.log("contraseña no valida",datos[3].value.length)
-                        valido = false
-                        return valido;
-                    }
-                    else
-                    {
-                        //console.log("contraseña valida",datos[3].value.length)
-                        if(datos[4].value != "A" && datos[4].value != "U"  || datos[4].value.length == 0 || datos[4].value.length > 1)
-                        {
-                            alert("Tipo de usuario no valido")
-                            //console.log("tipo de usuario no valido",datos[4].value.length)
-                            valido = false
-                            return valido;
-                        }
-                        else
-                        {
-                            x = await validarRepetidos(datos)
-                            console.log("Await:", x)
-                            if(x == false)
-                            {
-                                alert("piso o tipoMuseo ya registrado")
-                                valido = false
-                                return valido;
-                                
-                            }
-                            else
-                            {
-                                return valido;
-                                //console.log("tipo de usuario valida",datos[4].value.length)
-                            }
-                        }
-                    }
-                }
-            }
-        } 
-    }*/
-
-    function confirmEdit()
-    {
-    var editarDatos = $("#formUD").serializeArray();
-        //Variable para el crud origina 
-        //que se sta usando para el modelo//var dat = [editarDatos[1], editarDatos[2], editarDatos[3], editarDatos[4], editarDatos[5]] 
-        //if(validarDatos(datos))
-        // {
-            $.ajax({
-            url: "RenameMuseo.php",
-            type: "POST",
-            data: editarDatos,
-            success: function(r)
-            {
-                if (r == 1) 
-                    {
-
-                    alert("datos modificados con exito")
-                    $("#ordenarNomb").val(salaUD.value)
-                    cargarTabla()
-                    $("#modalUD").modal('hide')
-
-                    }
-                }
-            })
-        // }
-        //else
-        //{
-            //console.log("algo anda mal")
-        // }
+        
     }
 
-    function confirmDelete()
+    function confirmDeleteSalas()
     {
-        var eliminarDatos = $("#formUD").serializeArray();
+        var eliminarDatos = $("#formUDSalas").serializeArray();
         //console.log("editarDatos: ", eliminarDatos)
         $.ajax({
         url: "DeleteMuseo.php",
@@ -329,24 +237,24 @@ $(document).ready(function()
                 {
                 
                 alert("datos Eliminados")
-                cargarTabla()
-                $("#modalUD").modal('hide')
+                cargarTablaSalas()
+                $("#modalUDSalas").modal('hide')
                 
                 }
             }
         })
     }
 
-    $("#editData").on("click", function(){confirmEdit() }) 
-    $("#deleteData").on("click", function(){confirmDelete()}) 
+    $("#editDataSalas").on("click", function(){confirmEditSalas() }) 
+    $("#deleteDataSalas").on("click", function(){confirmDeleteSalas()}) 
 
-    function cargarFormEdit(value)
+    function cargarFormEditSalas(value)
     {
-        $("#editData").show()
-        $("#deleteData").hide()
+        $("#editDataSalas").show()
+        $("#deleteDataSalas").hide()
         
-        $("#idUD").val(value.id_sala)
-        $("#idUD").attr('placeholder', value.id_sala) 
+        $("#idUDSalas").val(value.id_sala)
+        $("#idUDSalas").attr('placeholder', value.id_sala) 
         
         $("#salaUD").val(value.sala)
         $("#salaUD").attr('placeholder', value.sala) 
@@ -369,13 +277,13 @@ $(document).ready(function()
         $("#idMuseoUD").attr('readonly', true)
     }
 
-    function cargarFormDelete(value)
+    function cargarFormDeleteSalas(value)
     {
-        $("#deleteData").show()
-        $("#editData").hide()
+        $("#deleteDataSalas").show()
+        $("#editDataSalas").hide()
 
-        $("#idUD").val(value.id_sala)
-        $("#idUD").attr('placeholder', value.id_sala) 
+        $("#idUDSalas").val(value.id_sala)
+        $("#idUDSalas").attr('placeholder', value.id_sala) 
         
         $("#salaUD").val(value.sala)
         $("#salaUD").attr('placeholder', value.sala) 
@@ -397,117 +305,65 @@ $(document).ready(function()
         $("#idMuseoUD").attr('placeholder', value.id_museo) 
         $("#idMuseoUD").attr('readonly', true)
     }
-    //Función para necesaria solamente para el crud original   
-    /*async function validarRepetidos(array)
+    
+    function cargarTablaSalas()
     {   
-        var noRepetido = false
+    $("#tablaSalas").empty()
+        var id = $('#cargarTablaSalas').val()
+        $.ajax({
+        url: "BackendSalas.php", 
+        type: "POST", 
+        data: {"id_sala": id}, 
+        //dataType: "json",
+        success: function(respuesta){
+            console.log(respuesta)
+            var box = JSON.parse(respuesta) 
+            console.log("datos cargados:",box)
 
-        var piso = array[1].value
-        var tipoMuseo = array[2].value
-        console.log("piso y tipoMuseo", piso, tipoMuseo)
-        
-        var ajax = $.ajax({
-            url: "BackendMuseo.php", //action
-            type: "POST", //method
-            data: {"funcion": 2, "piso": piso, "tipoMuseo": tipoMuseo},
-            success: 
-            function(respuesta){
-                let check = true
-                var box = JSON.parse(respuesta)
+            $.each(box, function(key, value){
+                //console.log("Respuesta: " + respuesta)
+                //console.log("Key: " , key)
+                //console.log("Value: " , value)
+
+                $("#tablaSalas").append("<tr id='fila"+key+"'>"+
+                "<td class='xd'>"+
+                    "<div class='btn-group' role='group' aria-label='Basic example'>"+
+                        "<button class='btn btn-sm btn-success text-center' id='edit"+key+"' data-bs-toggle='modal' data-bs-target='#modalUDSalas' >"+
+                            "<img class='iconsize' src='../iconos/edit-3.svg'>"+
+                        "</button>"+
+                        "<button class='btn btn-sm btn-danger text-center' id='delete"+key+"' data-bs-toggle='modal' data-bs-target='#modalUDSalas' >"+
+                            "<img class='iconsize' src='../iconos/trash-2.svg'>"+
+                        "</button>"+
+                    "</div>"+
+                "</td>"+
+                "<td class='xd'>"+value.id_sala+"</td>"+
+                "<td class='xd'>"+value.sala+"</td>"+
+                "<td class='xd'>"+value.piso+"</td>"+
+                "<td class='xd'>"+value.sector+"</td>"+
+                "<td class='xd'>"+value.punto_inteligente+"</td>"+
+                "<td class='xd'>"+value.id_museo+"</td>"+
+                "</tr>") 
+                
+                $("#edit"+key).on("click", function(){
+                    //console.log(value)
+                    cargarFormEditSalas(value)
+                })
+
+                $("#delete"+key).on("click", function(){
+                    //console.log(value)
+                    cargarFormDeleteSalas(value)
+                })
+                
+                key = key + 1
+                
+                })
             }
         })
-        await ajax 
-        const result = await ajax 
 
-        var box = JSON.parse(result)
-        
-        var pisoAjax = box[0].piso
-        var tipoMuseoAjax = box[1].tipoMuseo
-
-        if(pisoAjax == piso)
-        {
-            console.log("piso repetido")
-            noRepetido = false  
-            return noRepetido;
-        }
-        else
-        {   
-            if(tipoMuseoAjax == tipoMuseo)
-            {
-                console.log("tipoMuseo repetido")
-                noRepetido = false  
-                return noRepetido;
-            }
-            else
-            {
-                console.log("datos no repetidos")
-                noRepetido = true  
-                return noRepetido;
-            }     
-        }
-    }*/
-
-    function cargarTabla()
-    {   
-        $("#tabla1").empty()
-        //var id = $('#cargarTabla').val()
-        //if (l != "")
-        //{
-            //console.log("if")
-            $.ajax({
-            url: "BackendSalas.php", //action
-            type: "POST", //method
-            //data: {"id_sala": id}, 
-            //dataType: "json",
-            success: function(respuesta){
-                console.log(respuesta)
-                var box = JSON.parse(respuesta) 
-                console.log("datos cargados:",box)
-
-                $.each(box, function(key, value){
-                    //console.log("Respuesta: " + respuesta)
-                    //console.log("Key: " , key)
-                    //console.log("Value: " , value)
-
-                    $("#tabla1").append("<tr id='fila"+key+"'>"+
-                    "<td class='xd'>"+
-                        "<div class='btn-group' role='group' aria-label='Basic example'>"+
-                            "<button class='btn btn-sm btn-success text-center' id='edit"+key+"' data-bs-toggle='modal' data-bs-target='#modalUD' >"+
-                                "<img class='iconsize' src='../iconos/edit-3.svg'>"+
-                            "</button>"+
-                            "<button class='btn btn-sm btn-danger text-center' id='delete"+key+"' data-bs-toggle='modal' data-bs-target='#modalUD' >"+
-                                "<img class='iconsize' src='../iconos/trash-2.svg'>"+
-                            "</button>"+
-                        "</div>"+
-                    "</td>"+
-                    "<td class='xd'>"+value.id_sala+"</td>"+
-                    "<td class='xd'>"+value.sala+"</td>"+
-                    "<td class='xd'>"+value.piso+"</td>"+
-                    "<td class='xd'>"+value.sector+"</td>"+
-                    "<td class='xd'>"+value.punto_inteligente+"</td>"+
-                    "<td class='xd'>"+value.id_museo+"</td>"+
-                    "</tr>") 
-                    
-                    $("#edit"+key).on("click", function(){
-                        //console.log(value)
-                        cargarFormEdit(value)
-                    })
-
-                    $("#delete"+key).on("click", function(){
-                        //console.log(value)
-                        cargarFormDelete(value)
-                    })
-                    
-                    key = key + 1
-                    
-                    })
-                }
-            })
-        //}
     }
 
-    $("#cargarTabla").click(function(){
-        cargarTabla();
+    $("#cargarTablaSalas").click(function(){
+        cargarTablaSalas();
     })
 
 })
