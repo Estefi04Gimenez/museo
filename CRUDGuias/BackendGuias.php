@@ -4,7 +4,7 @@ require 'conexion.php';
 
 #$id = $_POST['id_museo'];
 
-$q = "SELECT * FROM salas ";
+$q = "SELECT * FROM guias ";
 
 $r = mysqli_query($con, $q);
 

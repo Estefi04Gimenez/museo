@@ -42,34 +42,49 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col">                                        
-                                            <label for="texto de ejemplo" class="form-label">Sala</label>
-                                            <input name="sala" type="text" id="sala" min="0" max="150" placeholder="" class="form-control">        
+                                            <label for="texto de ejemplo" class="form-label">Cupo maximo</label>
+                                            <input name="cupoMaximo" type="text" id="cupoMaximo" min="0" max="11" placeholder="" class="form-control">        
+                                        </div>
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Costo</label>
+                                            <input name="costo" type="text" id="costo" min="0" max="150" placeholder="" class="form-control">        
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">                                        
-                                            <label for="texto de ejemplo" class="form-label">Piso</label>
-                                            <input name="piso" type="text" id="piso" min="0" max="150" placeholder="" class="form-control">        
+                                            <label for="texto de ejemplo" class="form-label">Fecha</label>
+                                            <input name="fecha" type="date" id="fecha" min="0" max="11" placeholder="" class="form-control">        
+                                        </div>
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">hora</label>
+                                            <input name="hora" type="time" id="hora" min="0" max="11" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>   
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Tipo de Guia</label>
+                                            <input name="tipo" type="text" id="tipo" min="0" max="150" placeholder="" class="form-control">        
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">                                        
-                                            <label for="texto de ejemplo" class="form-label">Sector</label>
-                                            <input name="sector" type="text" id="sector" min="0" max="150" placeholder="" class="form-control">        
+                                            <label for="texto de ejemplo" class="form-label">descripcion</label>
+                                            <input name="descripcion" type="text" id="descripcion" min="0" max="150" placeholder="" class="form-control">        
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Idioma</label>
+                                            <input name="idioma" type="text" id="idioma" min="0" max="150" placeholder="" class="form-control">        
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">                                        
-                                            <label for="texto de ejemplo" class="form-label">Punto inteligente</label>
-                                            <input name="PuntoInteligente" type="text" id="PuntoInteligente" min="150" max="255" placeholder="" class="form-control">        
+                                            <label for="texto de ejemplo" class="form-label">Guia</label>
+                                            <input name="guia" type="text" id="guia" min="0" max="150" placeholder="" class="form-control">        
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">                                        
-                                            <label for="texto de ejemplo" class="form-label">Museo</label>
-                                            <input name="idMuseo" type="text" id="idMuseo" min="0" max="11" placeholder="" class="form-control">        
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </form>    
                         </div>
@@ -89,12 +104,17 @@
                         <thead>
                             <tr>
                                 <th class='xd'>Acciones</th>
-                                <th class='xd'>ID Sala</th>
-                                <th class='xd'>sala</th>
-                                <th class='xd'>piso</th>
-                                <th class='xd'>Sector</th>
-                                <th class='xd'>Punto inteligente</th>
-                                <th class='xd'>Museo</th>
+                                <th class='xd'>ID Guia</th>
+                                <th class='xd'>Tipo</th>
+                                <th class='xd'>Idioma</th>
+                                <th class='xd'>Costo</th>
+                                <th class='xd'>Descripción</th>
+                                <th class='xd'>Guia</th>
+                                <th class='xd'>Fecha</th>
+                                <th class='xd'>Hora</th>
+                                <th class='xd'>N° Personas Registrada</th>
+                                <th class='xd'>Cupo Maximo</th>
+                                <th class='xd'>Estado</th>
                             </tr>
                         </thead>
                         <tbody  id="tabla1">
@@ -114,7 +134,8 @@
                                             <h4 class="modal-title">Editar datos</h4>
                                         </div>
                                         <div class="col-2">
-                                            <label>id</label><input type="text" class="form-control" name="idUD" id="idUD" readonly>
+                                            <label>id</label>
+                                            <input type="text" class="form-control" name="idUD" id="idUD" readonly>
                                         </div>
                                         <div class="col-5 text-end">  
                                             <button id="closeModalUD" type="button" onclick="" class="btn-close" data-bs-dismiss="modal"></button>
@@ -124,36 +145,53 @@
                                     <!-- Modal body -->
                                     <div class="container"> 
                                         <div class="modal-body">
+                                            <div class="col">                                        
+                                                <label for="texto de ejemplo" class="form-label">Estado</label>
+                                                <input name="estadoUD" type="text" id="estadoUD" min="0" max="150" placeholder="" class="form-control">        
+                                            </div>
                                             <div class="row">
                                                 <div class="col">                                        
-                                                    <label for="texto de ejemplo" class="form-label">Sala</label>
-                                                    <input name="salaUD" type="text" id="salaUD" min="0" max="150" placeholder="" class="form-control">        
+                                                    <label for="texto de ejemplo" class="form-label">N° Personas Registradas</label>
+                                                    <input name="cantidadRegistradaUD" type="number" id="cantidadRegistradaUD" min="0" max="150" placeholder="" class="form-control">        
+                                                </div>
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Cupo maximo</label>
+                                                    <input name="cupoMaximoUD" type="text" id="cupoMaximoUD" min="0" max="11" placeholder="" class="form-control">        
+                                                </div>
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Costo</label>
+                                                    <input name="costoUD" type="text" id="costoUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
-                                                    <label for="texto de ejemplo" class="form-label">Piso</label>
-                                                    <input name="pisoUD" type="text" id="pisoUD" min="0" max="150" placeholder="" class="form-control">        
+                                                    <label for="texto de ejemplo" class="form-label">Fecha</label>
+                                                    <input name="fechaUD" type="text" id="fechaUD" min="0" max="11" placeholder="" class="form-control">        
+                                                </div>
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Hora</label>
+                                                    <input name="horaUD" type="text" id="horaUD" min="0" max="11" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
-                                                    <label for="texto de ejemplo" class="form-label">Sector</label>
-                                                    <input name="sectorUD" type="text" id="sectorUD" min="0" max="150" placeholder="" class="form-control">        
+                                                    <label for="texto de ejemplo" class="form-label">Idioma</label>
+                                                    <input name="idiomaUD" type="text" id="idiomaUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
-                                                    <label for="texto de ejemplo" class="form-label">Punto inteligente</label>
-                                                    <input name="PuntoInteligenteUD" type="text" id="PuntoInteligenteUD" min="0" max="150" placeholder="" class="form-control">        
+                                                    <label for="texto de ejemplo" class="form-label">Guia</label>
+                                                    <input name="guiaUD" type="text" id="guiaUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
-                                                    <label for="texto de ejemplo" class="form-label">Museo</label>
-                                                    <input name="idMuseoUD" type="text" id="idMuseoUD" min="0" max="11" placeholder="" class="form-control">        
+                                                    <label for="texto de ejemplo" class="form-label">Tipo de Guia</label>
+                                                    <input name="tipoUD" type="text" id="tipoUD" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </form>  
@@ -187,13 +225,13 @@ $(document).ready(function()
        // console.log("validacion exitosa")
         $.ajax({
             type:"POST",    
-            url:"addMuseo.php",
+            url:"addGuias.php",
             data: datos,
             success:function(r){
                 if(r == 1)
                 {
                     alert("agregado con exito");
-                    $("#ordenarNomb").val(salaMuseo.value)
+                    //$("#ordenarNomb").val(salaMuseo.value)
                     cargarTabla();
                     $("#myModal").modal('hide')
                 }else
@@ -293,7 +331,7 @@ $(document).ready(function()
         //if(validarDatos(datos))
         // {
             $.ajax({
-            url: "RenameMuseo.php",
+            url: "RenameGuias.php",
             type: "POST",
             data: editarDatos,
             success: function(r)
@@ -302,7 +340,6 @@ $(document).ready(function()
                     {
 
                     alert("datos modificados con exito")
-                    $("#ordenarNomb").val(salaUD.value)
                     cargarTabla()
                     $("#modalUD").modal('hide')
 
@@ -321,7 +358,7 @@ $(document).ready(function()
         var eliminarDatos = $("#formUD").serializeArray();
         //console.log("editarDatos: ", eliminarDatos)
         $.ajax({
-        url: "DeleteMuseo.php",
+        url: "DeleteGuias.php",
         type: "POST",
         data: eliminarDatos,
         success: function(r){
@@ -345,57 +382,94 @@ $(document).ready(function()
         $("#editData").show()
         $("#deleteData").hide()
         
-        $("#idUD").UDval(value.id_sala)
-        $("#idUD").attr('placeholder', value.id_sala) 
+        $("#idUD").val(value.id_guia)
+        $("#idUD").attr('placeholder', value.id_guia) 
         
-        $("#salaUD").val(value.sala)
-        $("#salaUD").attr('placeholder', value.sala) 
-        $("#salaUD").attr('readonly', false)
+        $("#tipoUD").val(value.tipo)
+        $("#tipoUD").attr('placeholder', value.tipo) 
+        $("#tipoUD").attr('readonly', false)
         
-        $("#pisoUD").val(value.piso)
-        $("#pisoUD").attr('placeholder', value.piso) 
-        $("#pisoUD").attr('readonly', false)
+        $("#idiomaUD").val(value.idioma)
+        $("#idiomaUD").attr('placeholder', value.idioma) 
+        $("#idiomaUD").attr('readonly', false)
         
-        $("#sectorUD").val(value.sector)
-        $("#sectorUD").attr('placeholder', value.sector) 
-        $("#sectorUD").attr('readonly', false)
+        $("#costoUD").val(value.costo)
+        $("#costoUD").attr('placeholder', value.costo) 
+        $("#costoUD").attr('readonly', false)
 
-        $("#PuntoInteligenteUD").val(value.punto_inteligente)
-        $("#PuntoInteligenteUD").attr('placeholder', value.punto_inteligente) 
-        $("#PuntoInteligenteUD").attr('readonly', true)
+        $("#descripcionUD").val(value.descripcion)
+        $("#descripcionUD").attr('placeholder', value.descripcion) 
+        $("#descripcionUD").attr('readonly', false)
 
-        $("#idMuseoUD").val(value.id_museo)
-        $("#idMuseoUD").attr('placeholder', value.id_museo) 
-        $("#idMuseoUD").attr('readonly', true)
+        $("#fechaUD").val(value.fecha)
+        $("#fechaUD").attr('placeholder', value.fecha) 
+        $("#fechaUD").attr('readonly', false)
+
+        $("#horaUD").val(value.hora)
+        $("#horaUD").attr('placeholder', value.hora) 
+        $("#horaUD").attr('readonly', false)
+        
+        $("#cantidadRegistradaUD").val(value.cantidad_registrado)
+        $("#cantidadRegistradaUD").attr('placeholder', value.cantidad_registrado) 
+        $("#cantidadRegistradaUD").attr('readonly', false)
+        
+        $("#cupoMaximoUD").val(value.cupo_max)
+        $("#cupoMaximoUD").attr('placeholder', value.cupo_max) 
+        $("#cupoMaximoUD").attr('readonly', false)
+        
+        $("#estadoUD").val(value.estado)
+        $("#estadoUD").attr('placeholder', value.estado) 
+        $("#estadoUD").attr('readonly', false)
+
+        $("#guiaUD").val(value.guia)
+        $("#guiaUD").attr('placeholder', value.guia) 
+        $("#guiaUD").attr('readonly', false)
     }
+    
 
     function cargarFormDelete(value)
     {
         $("#deleteData").show()
         $("#editData").hide()
 
-        $("#idUD").val(value.id_sala)
-        $("#idUD").attr('placeholder', value.id_sala) 
+        $("#idUD").val(value.id_guia)
+        $("#idUD").attr('placeholder', value.id_guia) 
         
-        $("#salaUD").val(value.sala)
-        $("#salaUD").attr('placeholder', value.sala) 
-        $("#salaUD").attr('readonly', true)
+        $("#tipoUD").val(value.tipo)
+        $("#tipoUD").attr('placeholder', value.tipo) 
+        $("#tipoUD").attr('readonly', true)
         
-        $("#pisoUD").val(value.piso)
-        $("#pisoUD").attr('placeholder', value.piso) 
-        $("#pisoUD").attr('readonly', true)
+        $("#idiomaUD").val(value.idioma)
+        $("#idiomaUD").attr('placeholder', value.idioma) 
+        $("#idiomaUD").attr('readonly', true)
         
-        $("#sectorUD").val(value.sector)
-        $("#sectorUD").attr('placeholder', value.sector) 
-        $("#sectorUD").attr('readonly', true)
+        $("#costoUD").val(value.costo)
+        $("#costoUD").attr('placeholder', value.costo) 
+        $("#costoUD").attr('readonly', true)
 
-        $("#PuntoInteligenteUD").val(value.punto_inteligente)
-        $("#PuntoInteligenteUD").attr('placeholder', value.punto_inteligente) 
-        $("#PuntoInteligenteUD").attr('readonly', true)
+        $("#descripcionUD").val(value.descripcion)
+        $("#descripcionUD").attr('placeholder', value.descripcion) 
+        $("#descripcionUD").attr('readonly', true)
 
-        $("#idMuseoUD").val(value.id_museo)
-        $("#idMuseoUD").attr('placeholder', value.id_museo) 
-        $("#idMuseoUD").attr('readonly', true)
+        $("#fechaUD").val(value.fecha)
+        $("#fechaUD").attr('placeholder', value.fecha) 
+        $("#fechaUD").attr('readonly', true)
+
+        $("#horaUD").val(value.hora)
+        $("#horaUD").attr('placeholder', value.hora) 
+        $("#horaUD").attr('readonly', true)
+        
+        $("#cantidadRegistradaUD").val(value.cantidad_registrado)
+        $("#cantidadRegistradaUD").attr('placeholder', value.cantidad_registrado) 
+        $("#cantidadRegistradaUD").attr('readonly', true)
+        
+        $("#cupoMaximoUD").val(value.cupo_max)
+        $("#cupoMaximoUD").attr('placeholder', value.cupo_max) 
+        $("#cupoMaximoUD").attr('readonly', true)
+        
+        $("#estadoUD").val(value.estado)
+        $("#estadoUD").attr('placeholder', value.estado) 
+        $("#estadoUD").attr('readonly', true)
     }
     //Función para necesaria solamente para el crud original   
     /*async function validarRepetidos(array)
@@ -455,9 +529,9 @@ $(document).ready(function()
         //{
             //console.log("if")
             $.ajax({
-            url: "BackendSalas.php", //action
+            url: "BackendGuias.php", //action
             type: "POST", //method
-            //data: {"id_sala": id}, 
+            //data: {"id_guia": id}, 
             //dataType: "json",
             success: function(respuesta){
                 console.log(respuesta)
@@ -480,12 +554,17 @@ $(document).ready(function()
                             "</button>"+
                         "</div>"+
                     "</td>"+
-                    "<td class='xd'>"+value.id_sala+"</td>"+
-                    "<td class='xd'>"+value.sala+"</td>"+
-                    "<td class='xd'>"+value.piso+"</td>"+
-                    "<td class='xd'>"+value.sector+"</td>"+
-                    "<td class='xd'>"+value.punto_inteligente+"</td>"+
-                    "<td class='xd'>"+value.id_museo+"</td>"+
+                    "<td class='xd'>"+value.id_guia+"</td>"+
+                    "<td class='xd'>"+value.tipo+"</td>"+
+                    "<td class='xd'>"+value.idioma+"</td>"+
+                    "<td class='xd'>"+value.costo+"</td>"+
+                    "<td class='xd'>"+value.descripcion+"</td>"+
+                    "<td class='xd'>"+value.guia+"</td>"+
+                    "<td class='xd'>"+value.fecha+"</td>"+
+                    "<td class='xd'>"+value.hora+"</td>"+
+                    "<td class='xd'>"+value.cantidad_registrado+"</td>"+
+                    "<td class='xd'>"+value.cupo_max+"</td>"+
+                    "<td class='xd'>"+value.estado+"</td>"+
                     "</tr>") 
                     
                     $("#edit"+key).on("click", function(){
