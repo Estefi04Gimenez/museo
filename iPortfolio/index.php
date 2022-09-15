@@ -1,3 +1,24 @@
+<?php
+require "conexion.php";
+#al acceder a la pagina una de estas variables deberia completarse con el id del museo correspondiente
+#$id = $GET_['id'];
+#$id = $POST_['id'];
+
+#por el momento trabajamos con esta variable. hasta crear una pagina para acceder a distintos museos
+$id = 1;
+
+$q = "SELECT nombre FROM museos WHERE id_museo = '$id'";
+
+$r =  mysqli_query($con, $q);
+
+while ($valores = mysqli_fetch_assoc($r))
+    {
+      $array[] = $valores;
+      $titulo = implode($valores);
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +89,7 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
         <div class="hero-container" data-aos="fade-in">
-            <h1>Ciudad Inteligente</h1>
+            <?php echo "<h1>".$titulo."</h1>";?>
             <p>Exposición <span class="typed" data-typed-items="Cultural, de Arte, de Historia, de Naturaleza"></span></p>
         </div>
     </section>
