@@ -17,7 +17,7 @@
     }
     else
     {
-        header("location: index.html");
+        header("location: login-modal.html");
         
     }
 
