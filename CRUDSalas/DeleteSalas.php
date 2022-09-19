@@ -1,7 +1,7 @@
 <?php
 require 'conexion.php';
 
-$id = $_POST['idUD'];
+$id = $_POST['idUDSalas'];
 $sala = $_POST['salaUD'];
 $piso = $_POST['pisoUD'];
 $sector = $_POST['sectorUD'];
@@ -11,7 +11,7 @@ $id_museo = $_POST['idMuseoUD'];
 
 
 
-$q = "DELETE FROM salas WHERE id_salas = '$id'";
+$q = "DELETE FROM salas WHERE id_sala = '$id'";
 
 echo mysqli_query($con, $q);
 

@@ -1,5 +1,4 @@
 <?php
-
 //parametros para la conexión
 $dbip = "localhost";
 $dbuser = "root";

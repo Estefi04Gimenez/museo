@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap-5.0.2/dist/css/bootstrap.css">
+    <script src="../bootstrap-5.0.2/dist/js/bootstrap.js"></script>
+    <script src="../bootstrap-5.0.2/jquery-3.6.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Consulta a base de datos</h1>      
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="d-grid col-2">
+                    <input type="date" class="form-control text-center mb-2 " name="fechaActual" id="fechaActual" readonly>
+                </div>           
+                <div class="d-grid col-2">
+                    <button id="botonModalExposiciones" type="button" class="btn text-center mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#myModalExposiciones">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-grid col-2">
+                    <button id="cargarTablaExposiciones" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
+                </div>
+                <div class="col-2">
+                    <select class="form-control" name="selectMuseos" id="selectMuseos">
+                        <option id='optiontMuseos' value='0'>--Seleccionar Museo--</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <select class="form-control" name="orderBy" id="orderBy">
+                        <option id='orderBy' value='0'>Filtrar Por...</option>
+                        <option id='orderBy' value='1'>Estado Pendiente</option>
+                        <option id='orderBy' value='2'>Estado En Exposicion</option>
+                        <option id='orderBy' value='3'>Estado Terminado</option>
+                    </select>
+                </div>
+                <div class="d-grid col-2">
+                    <button id="actualizarEstadoExposiciones" type="button" class="btn text-center mb-2 btn-secondary">Actualizar Estado</button>
+                </div>
+                <div class="d-grid col-4">
+                    <button id="ocultarTablaRelacionada" class="btn text-center mb-2 btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#tablaRelacionada" aria-expanded="false">Ocultar/Mostrar Tabla Relacionada</button>
+                </div>
+            </div>
+            <!-- The Modal --> 
+            <div class="modal fade" data-bs-backdrop="static" id="myModalExposiciones">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Añadir datos</h4>
+                            <button id="closeModalExposiciones(1)" type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                    
+                        <!-- Modal body -->
+                        <div class="container"> 
+                            <form id="formAddExposiciones">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Fecha de inicio</label>
+                                            <input name="fechaInicio" type="date" id="fechaInicio" min="0" max="150" placeholder="" class="form-control">        
+                                        </div>
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Fecha de finalización</label>
+                                            <input name="fechaFinalizacion" type="date" id="fechaFinalizacion" min="0" max="150" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Descripcion</label>
+                                            <input name="descripcion" type="text" id="descripcion" min="0" max="150" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label for="texto de ejemplo" class="form-label">Numero de Exposicion</label>
+                                            <input name="numero" type="number" id="numero" min="0" max="11" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="texto de ejemplo" class="form-label">Estado</label>
+                                            <select  name="estado" type="text" id="estado" min="0" max="150" placeholder="" value="Pendiente" class="form-control">
+                                                <option id='optiontEstado' value='0'>Pendiente(0)</option>
+                                                <option id='optiontEstado' value='1'>En Exposicion(1)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="texto de ejemplo" class="form-label">Lugar de Exposicion</label>
+                                            <select class="form-control" name="idSalaSelect" id="idSalaSelect">
+                                                <option id='optiontIdSalas' value='0'>--Seleccione Lugar de Exposicion--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>    
+                        </div>
+
+                            <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button id="closeModalExposiciones2(1)" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button id="addDataExposiciones" type="button" class="btn btn-primary">enviar</button>
+                        </div>        
+                    </div>
+                </div>      
+            </div>   
+            
+            <div class="row">
+                <div class="col-8">   
+                    <table class="table table-bordered table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th class='xd '>Acciones</th>
+                                <th class='xd '>ID Exposicion</th>
+                                <th class='xd '>Fecha de Inicio</th>
+                                <th class='xd '>Fecha de Finalizacion</th>
+                                <th class='xd '>Descripcion</th>
+                                <th class='xd '>Numero</th>
+                                <th class='xd '>Estado</th>
+                                <th class='xd '>ID Sala</th>
+                            </tr>
+                        </thead>
+                        <tbody  id="tablaExposiciones">
+                           
+                        </tbody>
+                    </table>    
+                </div>
+                <div id="tablaRelacionada" class="collapse col-4">   
+                    <table class="table table-bordered table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th class='xd '>Sala</th>
+                                <th class='xd '>Piso</th>
+                                <th class='xd '>Sector</th>
+                                <th class='xd '>N° Punto Inteligente</th>
+                                <th class='xd '>ID Museo</th>
+                            </tr>
+                        </thead>
+                        <tbody  id="tablaExposicionesSalas">
+                           
+                        </tbody>
+                    </table>    
+                </div>
+                <!--<div class="col-2">-->
+                    <!-- The Modal -->
+                    <div class="modal fade" data-bs-backdrop="static" id="modalUD">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <form id="formExposicionesUD">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <div class="col-5">
+                                            <h4 class="modal-title">Editar datos</h4>
+                                        </div>
+                                        <div class="col-2">
+                                            <label>id</label><input type="text" class="form-control" name="idExposicionesUD" id="idExposicionesUD" readonly>
+                                        </div>
+                                        <div class="col-5 text-end">  
+                                            <button id="closeModalExposicionesUD" type="button" onclick="" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Modal body -->
+                                    <div class="container"> 
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Fecha de inicio</label>
+                                                    <input name="fechaInicioUD" type="date" id="fechaInicioUD" min="0" max="150" placeholder="" class="form-control">        
+                                                </div>
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">fechaFinalizacion</label>
+                                                    <input name="fechaFinalizacionUD" type="date" id="fechaFinalizacionUD" min="0" max="150" placeholder="" class="form-control" readonly>        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">descripcion</label>
+                                                    <input name="descripcionUD" type="text" id="descripcionUD" min="0" max="150" placeholder="" class="form-control" readonly>        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Punto inteligente</label>
+                                                    <input name="numeroUD" type="text" id="numeroUD" min="0" max="150" placeholder="" class="form-control" readonly>        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label>Estado</label>
+                                                    <select name="estadoUD" type="text" id="estadoUD" min="0" max="11" placeholder="" class="form-control">
+                                                        <option id='optiontEstadoUD' value='0'>Pendiente (0)</option>
+                                                        <option id='optiontEstadoUD' value='1'>En Exposicion (1)</option>
+                                                        <option id='optiontEstadoUD' value='2'>Terminado (2)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label>Sala Nueva</label>
+                                                    <select class="form-control" name="idSalaSelectUD" id="idSalaSelectUD">
+                                                        <option id='optiontIdSalasUD' value='0'></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>  
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button id="closeModalUExposicionesD2" type="button" class="btn btn-danger"  data-bs-dismiss="modal">Cancelar</button>
+                                    <button id="editDataExposiciones" type="button" class="btn btn-primary " >enviar</button>
+                                    <button id="deleteDataExposiciones" type="button" class="btn btn-danger " >eliminar</button>
+                                </div>        
+                            </div>
+                        </div>  
+                    </div>
+                <!--</div>-->
+            </div>
+        </div>
+    </body>
+    </html>
+    
+<script>
+
+$(document).ready(function()
+{
+
+    function recuperarFecha()
+    {
+
+    //recupera la fecha
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    const formattedToday = dd + '-' + mm + '-' + yyyy;
+    var fecha = yyyy + '-' + mm + '-' + dd;//formato que se muestra en pantalla
+
+    console.log(formattedToday)
+    $("#fechaActual").val(fecha)
+    }
+    recuperarFecha();
+
+    function actualizarFechas()
+    {
+        var fecha = $("#fechaActual").val();
+        console.log(fecha)
+        //console.log(editarDatos)
+        //editarDatos.push({"name": 'funcion', "value": '1'})
+        //console.log(editarDatos)
+        
+       $.ajax({
+        url: "RenameExposiciones.php",
+        type: "POST",
+        data: {"funcion": 5, "fechaActual": fecha},
+        success: function(r)
+        {
+            if (r == 11) 
+                {
+
+                alert("Fechas Actualizadas")
+                //$("#ordenarNomb").val(exposicionesUD.value)
+                cargarTablaExposiciones()
+                //$("#modalUD").modal('hide')
+
+                }
+            }
+        })
+    }
+    $('#actualizarEstadoExposiciones').on('click', function(){actualizarFechas();})
+
+    function CargarMuseos()
+    { 
+        $.ajax({
+            type:"POST",    
+            url:"../CRUDSalas/BackendSalas.php",
+            data: {"funcion": 1},
+            success:function(respuesta){
+                
+                console.log(respuesta)
+                var box = JSON.parse(respuesta) 
+                console.log("datos cargados:",box)
+
+                
+                $.each(box, function(key, value){ 
+                    $('#selectMuseos').append("<option id='optiontMuseos' value='"+value.id_museo+"'>"+value.nombre+"</option>")
+
+                })
+            }
+        })
+    }
+    CargarMuseos();
+
+    function CargarSalas(selector)
+    {
+        $('#'+selector).children().remove().end()
+        
+        var museo = $('#selectMuseos').val()
+        
+        $.ajax({
+            type:"POST",    
+            url:"BackendExposiciones.php",
+            data: {"funcion": 5, "museo": museo},
+            success:function(respuesta){
+                
+                //console.log(respuesta)
+                console.log(selector)
+                var box = JSON.parse(respuesta) 
+                //console.log("datos cargados:",box)
+
+                
+                $.each(box, function(key, value){ 
+                    $('#'+selector).append("<option value='"+value.id_sala+"'>ID:"+value.id_sala+", Sala:"+value.sala+", Piso:"+value.piso+", Sector:"+value.sector+"</option>")
+
+                })
+            }
+        })
+    }
+
+
+    $('#botonModalExposiciones').on('click', function(){
+        var selector = 'idSalaSelect'
+        CargarSalas(selector);
+        $('#'+selector).append("<option id='optiontIdSalas' value='0'>--Seleccione Lugar de Exposicion--</option>")
+    })
+
+    async function confirmAddExposiciones()
+    {
+    var datos = $('#formAddExposiciones').serializeArray();
+    $.ajax({
+        type:"POST",    
+        url:"addExposiciones.php",
+        data: datos,
+        success:function(r){
+            if(r == 1)
+            {
+                alert("agregado con exito");
+                
+                cargarTablaExposiciones();
+                $("#myModalExposiciones").modal('hide')
+            }
+            else
+            {
+                alert("Fallo");
+            }
+        }
+    })
+    }
+    $("#addDataExposiciones").on("click", function(){confirmAddExposiciones() }) 
+
+    function confirmEditExposiciones()
+    {
+        var editarDatos = $("#formExposicionesUD").serializeArray();
+        //console.log(editarDatos)
+        editarDatos.push({"name": 'funcion', "value": '1'})
+        console.log(editarDatos)
+        
+
+       $.ajax({
+        url: "RenameExposiciones.php",
+        type: "POST",
+        data: editarDatos,
+        success: function(r)
+        {
+            if (r == 1) 
+                {
+
+                alert("datos modificados con exito")
+                //$("#ordenarNomb").val(exposicionesUD.value)
+                cargarTablaExposiciones()
+                $("#modalUD").modal('hide')
+
+                }
+            }
+        })
+        
+    }
+
+    function confirmDeleteExposiciones()
+    {
+        var eliminarDatos = $("#formExposicionesUD").serializeArray();
+        //console.log("editarDatos: ", eliminarDatos)
+        $.ajax({
+        url: "DeleteExposiciones.php",
+        type: "POST",
+        data: eliminarDatos,
+        success: function(r){
+            if (r == 1) 
+                {
+                
+                alert("datos Eliminados")
+                cargarTablaExposiciones()
+                $("#modalUD").modal('hide')
+                
+                }
+            }
+        })
+    }
+
+    $("#editDataExposiciones").on("click", function(){confirmEditExposiciones() }) 
+    $("#deleteDataExposiciones").on("click", function(){confirmDeleteExposiciones()}) 
+
+    function cargarFormEditExposiciones(value)
+    {
+        console.log("Editar", value)
+
+        
+
+        $("#editDataExposiciones").show()
+        $("#deleteDataExposiciones").hide()
+        
+        $("#idExposicionesUD").val(value.id_exposicion)
+        $("#idExposicionesUD").attr('placeholder', value.id_exposicion) 
+
+        $("#fechaInicioUD").val(value.fecha_inicio)
+        $("#fechaInicioUD").attr('placeholder', value.fecha_inicio) 
+        $("#fechaInicioUD").attr('readonly', false)
+        
+        $("#fechaFinalizacionUD").val(value.fecha_finalizacion)
+        $("#fechaFinalizacionUD").attr('placeholder', value.fecha_finalizacion) 
+        $("#fechaFinalizacionUD").attr('readonly', false)
+        
+        $("#descripcionUD").val(value.descripcion)
+        $("#descripcionUD").attr('placeholder', value.descripcion) 
+        $("#descripcionUD").attr('readonly', false)
+
+        $("#numeroUD").val(value.numero)
+        $("#numeroUD").attr('placeholder', value.numero) 
+        $("#numeroUD").attr('readonly', false)
+
+        $("#estadoUD").val(value.estado)
+        $("#estadoUD").attr('placeholder', value.estado) 
+        $("#estadoUD").attr('readonly', false)
+
+        $("#idSalaUD").val("ID:" + value.id_sala + ", Sala:" + value.sala + ", Piso:" + value.piso + ", Sector:" + value.sector)
+        $("#idSalaUD").attr('placeholder', value.id_sala) 
+        $("#idSalaUD").attr('readonly', true)
+
+    }
+
+    function cargarFormDeleteExposiciones(value)
+    {
+        $("#deleteDataExposiciones").show()
+        $("#editDataExposiciones").hide()
+
+        $("#idExposicionesUD").val(value.id_exposicion)
+        $("#idExposicionesUD").attr('placeholder', value.id_exposicion) 
+
+        
+        $("#fechaInicioUD").val(value.fecha_inicio)
+        $("#fechaInicioUD").attr('placeholder', value.fecha_inicio) 
+        $("#fechaInicioUD").attr('readonly', true)
+        
+        $("#fechaFinalizacionUD").val(value.fecha_finalizacion)
+        $("#fechaFinalizacionUD").attr('placeholder', value.fecha_finalizacion) 
+        $("#fechaFinalizacionUD").attr('readonly', true)
+        
+        $("#descripcionUD").val(value.descripcion)
+        $("#descripcionUD").attr('placeholder', value.descripcion) 
+        $("#descripcionUD").attr('readonly', true)
+
+        $("#numeroUD").val(value.numero)
+        $("#numeroUD").attr('placeholder', value.numero) 
+        $("#numeroUD").attr('readonly', true)
+
+        $("#estadoUD").val(value.estado)
+        $("#estadoUD").attr('placeholder', value.estado) 
+        $("#estadoUD").attr('readonly', true)
+
+        $("#idSalaUD").val(value.id_sala)
+        $("#idSalaUD").attr('placeholder', value.id_sala) 
+        $("#idSalaUD").attr('readonly', true)
+    }
+    
+    function cargarTablaExposiciones()
+    {   
+    $("#tablaExposiciones").empty()
+    $("#tablaExposicionesSalas").empty()
+        var museo = $('#selectMuseos').val()
+        var orderBy = $('#orderBy').val()
+        
+        $.ajax({
+        url: "BackendExposiciones.php", 
+        type: "POST", 
+        data: {"funcion": 1, "museo": museo, "orderBy": orderBy}, 
+        //dataType: "json",
+        success: function(respuesta){
+            console.log(respuesta)
+            var box = JSON.parse(respuesta) 
+            console.log("datos cargados:",box)
+
+            $.each(box, function(key, value){
+                //console.log("Respuesta: " + respuesta)
+                //console.log("Key: " , key)
+                //console.log("Value: " , value)
+
+                $("#tablaExposiciones").append("<tr class='estado"+value.estado+"' id='fila"+key+"'>"+
+                "<td class='xd'>"+
+                    "<div class='btn-group' role='group' aria-label='Basic example'>"+
+                        "<button class='btn btn-sm btn-success text-center' id='edit"+key+"' data-bs-toggle='modal' data-bs-target='#modalUD'>"+
+                            "<img class='iconsize' src='../iconos/edit-3.svg'>"+
+                        "</button>"+
+                        "<button class='btn btn-sm btn-danger text-center' id='delete"+key+"' data-bs-toggle='modal' data-bs-target='#modalUD'>"+
+                            "<img class='iconsize' src='../iconos/trash-2.svg'>"+
+                        "</button>"+
+                    "</div>"+
+                    "<button class='btn btn-sm btn-warning text-center' id='refresh"+key+"''>"+
+                            "<img class='iconsize' src='../iconos/refresh-ccw.svg'>"+
+                        "</button>"+
+                "</td>"+
+                "<td class='xd'>"+value.id_exposicion+"</td>"+
+                "<td class='xd'>"+value.fecha_inicio+"</td>"+
+                "<td class='xd'>"+value.fecha_finalizacion+"</td>"+
+                "<td class='xd'>"+value.descripcion+"</td>"+
+                "<td class='xd'>"+value.numero+"</td>"+
+                "<td class='xd'>"+value.estado+"</td>"+
+                "<td class='xd'>"+value.id_sala+"</td>"+
+                "</tr>") 
+
+                $("#tablaExposicionesSalas").append("<tr id='fila"+key+"'>"+
+                "<td class='xd altura2'>"+value.sala+"</td>"+
+                "<td class='xd altura2'>"+value.piso+"</td>"+
+                "<td class='xd altura2'>"+value.sector+"</td>"+
+                "<td class='xd altura2'>"+value.punto_inteligente+"</td>"+
+                "<td class='xd altura2'>"+value.id_museo+"</td>"+
+                "</tr>")
+                $('#refresh'+key).attr('hidden', true)
+
+                if ($("#fechaActual").val() <= value.fecha_finalizacion && $("#fechaActual").val() >= value.fecha_inicio && value.estado != 1) 
+                {
+                    $('#refresh'+key).attr('hidden', false)
+                }
+                if ($("#fechaActual").val() > value.fecha_finalizacion && value.estado != 2) 
+                {
+                    $('#refresh'+key).attr('hidden', false)
+                }
+                if ($("#fechaActual").val() < value.fecha_inicio && value.estado != 0) 
+                {
+                    $('#refresh'+key).attr('hidden', false)
+                }
+
+                $("#edit"+key).on("click", function(){
+                    //console.log("Editar", value)
+                    var selector = 'idSalaSelectUD'
+                    CargarSalas(selector);
+
+                    cargarFormEditExposiciones(value)
+                    $('#'+selector).append("<option id='optiontIdSalas' value='"+value.id_sala+"'>--ID:"+value.id_sala+", Sala:"+value.sala+", Piso:"+value.piso+", Sector:"+value.sector+"--</option>")
+                })
+
+                $("#delete"+key).on("click", function(){
+                    //console.log(value)
+                    cargarFormDeleteExposiciones(value)
+                })
+
+                $('#refresh'+key).on("click", function(){ 
+
+                })
+                
+                key = key + 1
+                
+                })
+            }
+        })
+
+    }
+
+    $("#cargarTablaExposiciones").click(function(){
+        cargarTablaExposiciones();
+    })
+
+})
+
+</script>
+<style>
+
+.estado0
+{
+    background-color: lightblue;
+}
+.estado1
+{
+    background-color: lightgreen;
+}
+.estado2
+{
+    background-color: lightcoral;
+}
+
+.xd
+{
+    text-align: center;
+    height: 20px;
+}
+
+.iconsize
+{
+    height: auto;
+    width: auto;
+}
+.action
+{
+    height: 40px;
+    width: 40px;
+}
+
+.altura
+{
+    height: 40px;
+}
+.altura2
+{
+    height: 44px;
+}
+
+/*oculta las flechas del input Type=number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*oculta las flechas del input Type=number en firefox*/
+input[type=number] 
+{
+    -moz-appearance: textfield;
+}
+
+</style>
+</body>
+</html>

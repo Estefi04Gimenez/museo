@@ -21,6 +21,11 @@
                 <div class="col-2">
                     <button id="cargarTablaSalas" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
                 </div>
+                <div class="col-2">
+                    <select class="form-control" name="selectMuseos" id="selectMuseos">
+                        <option id='optiontMuseos' value='0'>Seleccione un museo</option>
+                    </select>
+                </div>
                 <div class="d-grid col-2">
                     <button id="botonModalSalas" type="button" class="btn text-center mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#myModalSalas">+</button>
                 </div>           
@@ -67,7 +72,7 @@
                                     <div class="row">
                                         <div class="col">                                        
                                             <label for="texto de ejemplo" class="form-label">Museo</label>
-                                            <input name="idMuseo" type="text" id="idMuseo" min="0" max="11" placeholder="" class="form-control">        
+                                            <input name="idMuseo" type="text" id="museo" min="150" max="255" placeholder="" class="form-control" readonly>        
                                         </div>
                                     </div>
                                 </div>
@@ -176,19 +181,55 @@
 
 $(document).ready(function()
 {
-    
+    function cargarMuseosSalas ()
+    { 
+    $.ajax({
+        type:"POST",    
+        url:"BackendSalas.php",
+        data: {"funcion": 1},
+        success:function(respuesta){
+            
+            console.log(respuesta)
+            var box = JSON.parse(respuesta) 
+            console.log("datos cargados:",box)
+
+            
+            $.each(box, function(key, value){ 
+                $('#selectMuseos').append("<option id='optiontMuseos' value='"+value.id_museo+"'>"+value.nombre+"</option>")
+                
+            })
+        }
+     })
+    }
+    cargarMuseosSalas();
+
+    $('#botonModalSalas').click(function(){
+        $('#addDataSalas').attr('disabled', false)
+        console.log($('#selectMuseos').val())
+        var x = $('#selectMuseos').val()
+        $('#museo').val(x)
+
+        if(x == 0)
+        {
+            $('#addDataSalas').attr('disabled', true)
+            alert('Seleccione un Museo')
+        }
+
+    })
+
     async function confirmAddSalas()
     {
     var datos = $('#formAddSalas').serializeArray();
+    console.log("xd: ",datos)
     $.ajax({
         type:"POST",    
-        url:"addMuseo.php",
+        url:"addSalas.php",
         data: datos,
         success:function(r){
             if(r == 1)
             {
                 alert("agregado con exito");
-                $("#ordenarNomb").val(salaMuseo.value)
+                //$("#ordenarNomb").val(salaMuseo.value)
                 cargarTablaSalas();
                 $("#myModalSalas").modal('hide')
             }else
@@ -205,7 +246,7 @@ $(document).ready(function()
         var editarDatos = $("#formUDSalas").serializeArray();
 
         $.ajax({
-        url: "RenameMuseo.php",
+        url: "RenameSalas.php",
         type: "POST",
         data: editarDatos,
         success: function(r)
@@ -214,7 +255,7 @@ $(document).ready(function()
                 {
 
                 alert("datos modificados con exito")
-                $("#ordenarNomb").val(salaUD.value)
+               // $("#ordenarNomb").val(salaUD.value)
                 cargarTablaSalas()
                 $("#modalUDSalas").modal('hide')
 
@@ -229,7 +270,7 @@ $(document).ready(function()
         var eliminarDatos = $("#formUDSalas").serializeArray();
         //console.log("editarDatos: ", eliminarDatos)
         $.ajax({
-        url: "DeleteMuseo.php",
+        url: "DeleteSalas.php",
         type: "POST",
         data: eliminarDatos,
         success: function(r){
@@ -309,11 +350,11 @@ $(document).ready(function()
     function cargarTablaSalas()
     {   
     $("#tablaSalas").empty()
-        var id = $('#cargarTablaSalas').val()
+        var idMuseo = $('#selectMuseos').val()
         $.ajax({
         url: "BackendSalas.php", 
-        type: "POST", 
-        data: {"id_sala": id}, 
+        type: "POST",
+        data: {"id_museo": idMuseo,"funcion":6}, 
         //dataType: "json",
         success: function(respuesta){
             console.log(respuesta)

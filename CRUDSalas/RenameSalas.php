@@ -2,7 +2,7 @@
 
 require 'conexion.php';
 
-$id = $_POST['idUD'];
+$id = $_POST['idUDSalas'];
 $sala = $_POST['salaUD'];
 $piso = $_POST['pisoUD'];
 $sector = $_POST['sectorUD'];
