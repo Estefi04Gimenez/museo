@@ -314,6 +314,7 @@ $(document).ready(function()
         var museo = $('#selectMuseos').val()
         
         $.ajax({
+            async: false,
             type:"POST",    
             url:"BackendExposiciones.php",
             data: {"funcion": 5, "museo": museo},
@@ -448,9 +449,7 @@ $(document).ready(function()
         $("#estadoUD").attr('placeholder', value.estado) 
         $("#estadoUD").attr('readonly', false)
 
-        $("#idSalaUD").val("ID:" + value.id_sala + ", Sala:" + value.sala + ", Piso:" + value.piso + ", Sector:" + value.sector)
-        $("#idSalaUD").attr('placeholder', value.id_sala) 
-        $("#idSalaUD").attr('readonly', true)
+        $("#idSalaSelectUD").attr('readonly', false)
 
     }
 
@@ -458,7 +457,8 @@ $(document).ready(function()
     {
         $("#deleteDataExposiciones").show()
         $("#editDataExposiciones").hide()
-
+        
+        
         $("#idExposicionesUD").val(value.id_exposicion)
         $("#idExposicionesUD").attr('placeholder', value.id_exposicion) 
 
@@ -483,9 +483,7 @@ $(document).ready(function()
         $("#estadoUD").attr('placeholder', value.estado) 
         $("#estadoUD").attr('readonly', true)
 
-        $("#idSalaUD").val(value.id_sala)
-        $("#idSalaUD").attr('placeholder', value.id_sala) 
-        $("#idSalaUD").attr('readonly', true)
+        $("#idSalaSelectUD").attr('readonly', true)
     }
     
     function cargarTablaExposiciones()
@@ -570,7 +568,13 @@ $(document).ready(function()
 
                 $("#delete"+key).on("click", function(){
                     //console.log(value)
+                    var selector = 'idSalaSelectUD'
+                    CargarSalas(selector);
+                    
                     cargarFormDeleteExposiciones(value)
+                    $('#idSalaSelectUD').children().remove().end()
+                    $('#'+selector).append("<option id='optiontIdSalas' value='"+value.id_sala+"'>--ID:"+value.id_sala+", Sala:"+value.sala+", Piso:"+value.piso+", Sector:"+value.sector+"--</option>")
+
                 })
 
                 $('#refresh'+key).on("click", function(){ 

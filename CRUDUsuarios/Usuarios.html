@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap-5.0.2/dist/css/bootstrap.css">
+    <script src="../bootstrap-5.0.2/dist/js/bootstrap.js"></script>
+    <script src="../bootstrap-5.0.2/jquery-3.6.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <h1>Consulta a base de datos</h1>      
+                </div>        
+            </div>
+            <div class="row justify-content-end">
+                <div class="d-grid col-2">
+                    <button id="botonModalAltaUsuario" type="button" class="btn text-center mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#myModalAltaUsuario">+</button>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="d-grid col-4">
+                    <button id="cargarTablaUsuarios" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
+                </div>
+                <div class="col-4">                                        
+                    <select name="selectMuseo" id="selectMuseo" class="form-control mb-2">
+                        <option value="0">--Seleccionar museo--</option>
+                    </select>        
+                </div>
+                <div class="d-grid col-4">
+                    <button id="ocultarTablaRelacionada" class="btn text-center mb-2 btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#tablaRelacionada" aria-expanded="false">Ocultar/Mostrar Tabla Relacionada</button>
+                </div>
+            </div>
+            <!-- The Modal --> 
+            <div class="modal fade" data-bs-backdrop="static" id="myModalAltaUsuario">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Añadir datos</h4>
+                            <button id="closeModalAltaUsuario" type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                    
+                        <!-- Modal body -->
+                        <div class="container"> 
+                            <form id="formAddUsuarios">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label class="form-label">Nombre Usuario</label>
+                                            <input name="nombreUsuario" type="text" id="nombreUsuario" min="0" max="255" placeholder="" class="form-control">        
+                                        </div>
+                                        <div class="col">                                        
+                                            <label class="form-label">Email</label>
+                                            <input name="emailUsuario" type="text" id="emailUsuario" min="0" max="150" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label class="form-label">DNI</label>
+                                            <input name="dniUsuario" type="number" id="dniUsuario" min="0" max="11" placeholder="" class="form-control">        
+                                        </div>
+                                        <div class="col">                                        
+                                            <label class="form-label">Numero de Telefono</label>
+                                            <input name="telUsuario" type="text" id="telUsuario" min="0" max="150" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label class="form-label">Contraseña</label>
+                                            <input name="contrasennaUsuario" type="text" id="contrasennaUsuario" min="0" max="150" placeholder="" class="form-control">        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">                                        
+                                            <label class="form-label">Tipo de Usuario</label>
+                                            <select name="tipoUsuario" id="tipoUsuario" min="0" max="255" placeholder="" class="form-control">
+                                                <option value="A">Usuario del Sistema</option>
+                                                <option value="U">Usuario Final</option>
+                                            </select>        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">        
+                                            <label class="form-label">Museo</label>                                
+                                            <select name="idMuseoUsuario" id="idMuseoUsuario" class="form-control mb-2">
+                                                <option value="0">--Seleccionar museo--</option>
+                                            </select>        
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>    
+                        </div>
+                            <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button id="closeModalAltaUsuario2" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button id="addDataUsuario" type="button" class="btn btn-primary xd">enviar</button>
+                        </div>        
+                    </div>
+                </div>      
+            </div>   
+            
+            <div class="row">
+                <div class="col-8">   
+                    <table class="table table-bordered table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th class='xd'>Acciones</th>
+                                <th class='xd'>ID Usuario</th>
+                                <th class='xd'>Nombre Completo</th>
+                                <th class='xd'>DNI</th>
+                                <th class='xd'>Nro. Telefono</th>
+                                <th class='xd'>email</th>
+                                <th class='xd'>Contraseña</th>
+                                <th class='xd'>Tipo de Usuario</th>
+                                <th class='xd'>ID Museo</th>
+                            </tr>
+                        </thead>
+                        <tbody  id="tablaUsuarios">
+                           
+                        </tbody>
+                    </table>    
+                </div>
+                <div id="tablaRelacionada" class="collapse col-4">   
+                    <table class="table table-bordered table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th class='xd'>Nombre de Museo</th>
+                                <th class='xd'>ubicacion</th>
+                                <th class='xd'>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody  id="tablaMuseos">
+                           
+                        </tbody>
+                    </table>    
+                </div>
+                <!--<div class="col-2">-->
+                    <!-- The Modal -->
+                    <div class="modal fade" data-bs-backdrop="static" id="modalUDUsuarios">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <form id="formUDUsuarios">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <div class="col-5">
+                                            <h4 class="modal-title">Editar datos</h4>
+                                        </div>
+                                        <div class="col-2">
+                                            <label>id</label><input type="text" class="form-control" name="idUDUsuario" id="idUDUsuario" readonly>
+                                        </div>
+                                        <div class="col-5 text-end">  
+                                            <button id="closeModalUDUsuarios" type="button" onclick="" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Modal body -->
+                                    <div class="container"> 
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label class="form-label">Nombre UsuarioUD</label>
+                                                    <input name="nombreUsuarioUD" type="text" id="nombreUsuarioUD" min="0" max="255" placeholder="" class="form-control">        
+                                                </div>
+                                                <div class="col">                                        
+                                                    <label class="form-label">Email</label>
+                                                    <input name="emailUsuarioUD" type="text" id="emailUsuarioUD" min="0" max="150" placeholder="" class="form-control">        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label class="form-label">DNI</label>
+                                                    <input name="dniUsuarioUD" type="number" id="dniUsuarioUD" min="0" max="11" placeholder="" class="form-control">        
+                                                </div>
+                                                <div class="col">                                        
+                                                    <label class="form-label">Numero de Telefono</label>
+                                                    <input name="telUsuarioUD" type="text" id="telUsuarioUD" min="0" max="150" placeholder="" class="form-control">        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label class="form-label">Contraseña</label>
+                                                    <input name="contrasennaUsuarioUD" type="text" id="contrasennaUsuarioUD" min="0" max="150" placeholder="" class="form-control">        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label class="form-label">Tipo de UsuarioUD</label>
+                                                    <select name="tipoUsuarioUD" id="tipoUsuarioUD" min="0" max="255" placeholder="" class="form-control">
+                                                    </select>        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">        
+                                                    <label class="form-label">Museo</label>                                
+                                                    <select name="idMuseoUsuarioUD" id="idMuseoUsuarioUD" class="form-control mb-2">
+                                                        <option value="0">--Seleccionar museo--</option>
+                                                    </select>        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>  
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button id="closeModalUDUsuarios2" type="button" class="btn btn-danger"  data-bs-dismiss="modal">Cancelar</button>
+                                    <button id="editDataUsuarios" type="button" class="btn btn-primary xd" >enviar</button>
+                                    <button id="deleteDataUsuarios" type="button" class="btn btn-danger xd" >eliminar</button>
+                                </div>        
+                            </div>
+                        </div>  
+                    </div>
+                <!--</div>-->
+            </div>
+        </div>
+    </body>
+    </html>
+    
+<script>
+
+$(document).ready(function()
+{
+
+    function CargarMuseos()
+    { 
+        $.ajax({
+            type:"POST",    
+            url:"../CRUDSalas/BackendSalas.php",
+            data: {"funcion": 1},
+            success:function(respuesta){
+                
+                console.log(respuesta)
+                var box = JSON.parse(respuesta) 
+                console.log("datos cargados:",box)
+
+                
+                $.each(box, function(key, value){ 
+                    $('#selectMuseo').append("<option id='optiontMuseos' value='"+value.id_museo+"'>"+value.nombre+"</option>")
+
+                })
+            }
+        })
+    }
+    CargarMuseos();
+    
+    function CargarMuseoUsuarios(selector)
+    { 
+        $('#'+selector).children().remove().end()
+        $.ajax({
+            type:"POST",    
+            url:"../CRUDSalas/BackendSalas.php",
+            data: {"funcion": 1},
+            success:function(respuesta){
+                
+                console.log(respuesta)
+                var box = JSON.parse(respuesta) 
+                console.log("datos cargados:",box)
+                
+                $.each(box, function(key, value){ 
+                    $('#'+selector).append("<option id='optiontIdMuseos"+value.id_museo+"' value='"+value.id_museo+"'>"+value.nombre+"</option>")   
+                })
+            }
+        })
+    }
+
+    async function confirmAddUsuarios()
+    {
+        var datos = $('#formAddUsuarios').serializeArray();
+        
+        
+
+        $.ajax({
+            type:"POST",    
+            url:"addUsuarios.php",
+            data: datos,
+            success:function(r){
+                if(r == 1)
+                {
+                    alert("agregado con exito");
+                    //$("#ordenarNomb").val(nombreUsuario.value)
+                    cargarTablaUsuarios();
+                    $("#myModalAltaUsuario").modal('hide')
+                }else
+                {
+                    alert("Fallo");
+                }
+            }
+        })  
+    }
+
+    $('#botonModalAltaUsuario').click( function(){
+        var selector = 'isMuseoUsuario'
+        CargarMuseoUsuarios(selector);        
+        $('#idMuseoUsuario').append("<option id='optiontMuseos' value='0'>--Seleccionar museo--</option>")
+    })
+
+    $("#addDataUsuario").on("click", function(){confirmAddUsuarios() }) 
+
+
+    function confirmEditUsuarios()
+    {
+    var editarDatos = $("#formUDUsuarios").serializeArray();
+        $.ajax({
+        url: "RenameUsuarios.php",
+        type: "POST",
+        data: editarDatos,
+        success: function(r)
+        {
+            if (r == 1) 
+                {
+
+                alert("datos modificados con exito")
+                $("#ordenarNomb").val(nombreUsuarioUD.value)
+                cargarTablaUsuarios()
+                $("#modalUDUsuarios").modal('hide')
+
+                }
+            }
+        })
+    }
+
+    function confirmDeleteUsuarios()
+    {
+        var eliminarDatos = $("#formUDUsuarios").serializeArray();
+        //console.log("editarDatos: ", eliminarDatos)
+        $.ajax({
+        url: "DeleteUsuarios.php",
+        type: "POST",
+        data: eliminarDatos,
+        success: function(r){
+            if (r == 1) 
+                {
+                
+                alert("datos Eliminados")
+                cargarTablaUsuarios()
+                $("#modalUDUsuarios").modal('hide')
+                
+                }
+            }
+        })
+    }
+
+    $("#editDataUsuarios").on("click", function(){confirmEditUsuarios() }) 
+    $("#deleteDataUsuarios").on("click", function(){confirmDeleteUsuarios()}) 
+
+    function cargarFormEditUsuarios(value)
+    {
+
+        $("#editDataUsuarios").show()
+        $("#deleteDataUsuarios").hide()
+        
+        $("#idUDUsuario").val(value.id_user)
+        $("#idUDUsuario").attr('placeholder', value.id_user) 
+        
+        $("#nombreUsuarioUD").val(value.nombre_completo)
+        $("#nombreUsuarioUD").attr('placeholder', value.nombre_completo) 
+        $("#nombreUsuarioUD").attr('readonly', false)
+        
+        $("#emailUsuarioUD").val(value.email)
+        $("#emailUsuarioUD").attr('placeholder', value.email) 
+        $("#emailUsuarioUD").attr('readonly', false)
+
+        $("#dniUsuarioUD").val(value.dni)
+        $("#dniUsuarioUD").attr('placeholder', value.dni) 
+        $("#dniUsuarioUD").attr('readonly', false)
+        
+        $("#telUsuarioUD").val(value.tel)
+        $("#telUsuarioUD").attr('placeholder', value.tel) 
+        $("#telUsuarioUD").attr('readonly', false)
+
+        $("#contrasennaUsuarioUD").val(value.contraseña)
+        $("#contrasennaUsuarioUD").attr('placeholder', value.contraseña) 
+        $("#contrasennaUsuarioUD").attr('readonly', false)
+
+        $("#tipoUsuarioUD").val(value.tipo_user)
+        $("#tipoUsuarioUD").attr('placeholder', value.tipo_user) 
+        $("#tipoUsuarioUD").attr('readonly', false)
+
+        $('#isMuseoUsuarioUD').val(value.id_museo)
+        $("#idMuseoUsuarioUD").attr('placeholder', value.id_museo) 
+        $("#idMuseoUsuarioUD").attr('readonly', false)
+    }
+
+    function cargarFormDeleteUsuarios(value)
+    {
+
+           
+
+        $("#deleteDataUsuarios").show()
+        $("#editDataUsuarios").hide()
+
+        $("#idUDUsuario").val(value.id_user)
+        $("#idUDUsuario").attr('placeholder', value.id_user) 
+        
+        $("#nombreUsuarioUD").val(value.nombre_completo)
+        $("#nombreUsuarioUD").attr('placeholder', value.nombre_completo) 
+        $("#nombreUsuarioUD").attr('readonly', true)
+        
+        $("#emailUsuarioUD").val(value.email)
+        $("#emailUsuarioUD").attr('placeholder', value.email) 
+        $("#emailUsuarioUD").attr('readonly', true)
+
+        $("#dniUsuarioUD").val(value.dni)
+        $("#dniUsuarioUD").attr('placeholder', value.dni) 
+        $("#dniUsuarioUD").attr('readonly', true)
+        
+        $("#telUsuarioUD").val(value.tel)
+        $("#telUsuarioUD").attr('placeholder', value.tel) 
+        $("#telUsuarioUD").attr('readonly', true)
+
+        $("#contrasennaUsuarioUD").val(value.contraseña)
+        $("#contrasennaUsuarioUD").attr('placeholder', value.contraseña) 
+        $("#contrasennaUsuarioUD").attr('readonly', true)
+
+
+        $("#tipoUsuarioUD").attr('placeholder', value.tipo_user) 
+        $("#tipoUsuarioUD").attr('readonly', true)
+
+        $("#idMuseoUsuarioUD").attr('placeholder', value.id_museo) 
+        $("#idMuseoUsuarioUD").attr('readonly', true)
+    }
+
+    function cargarTablaUsuarios()
+    {   
+        $("#tablaUsuarios").empty()
+        $("#tablaMuseos").empty()
+        
+            var museo = $('#selectMuseo').val()
+            $.ajax({
+            url: "BackendUsuarios.php", 
+            type: "POST", 
+            data: {"museo": museo}, 
+            //dataType: "json",
+            success: function(respuesta){
+                console.log(respuesta)
+                var box = JSON.parse(respuesta) 
+                console.log("datos cargados:",box)
+
+                $.each(box, function(key, value){
+                    //console.log("Respuesta: " + respuesta)
+                    //console.log("Key: " , key)
+                    
+
+                    $("#tablaUsuarios").append("<tr id='fila"+key+"'>"+
+                    "<td class='xd'>"+
+                        "<div class='btn-group' role='group' aria-label='Basic example'>"+
+                            "<button class='btn btn-sm btn-success text-center' id='edit"+key+"' data-bs-toggle='modal' data-bs-target='#modalUDUsuarios' >"+
+                                "<img class='iconsize' src='../iconos/edit-3.svg'>"+
+                            "</button>"+
+                            "<button class='btn btn-sm btn-danger text-center' id='delete"+key+"' data-bs-toggle='modal' data-bs-target='#modalUDUsuarios' >"+
+                                "<img class='iconsize' src='../iconos/trash-2.svg'>"+
+                            "</button>"+
+                        "</div>"+
+                    "</td>"+
+                    "<td class='xd'>"+value.id_user+"</td>"+
+                    "<td class='xd'>"+value.nombre_completo+"</td>"+
+                    "<td class='xd'>"+value.dni+"</td>"+
+                    "<td class='xd'>"+value.tel+"</td>"+
+                    "<td class='xd'>"+value.email+"</td>"+
+                    "<td class='xd'>"+value.contraseña+"</td>"+
+                    "<td class='xd'>"+value.tipo_user+"</td>"+
+                    "<td class='xd'>"+value.id_museo+"</td>"+
+                    "</tr>") 
+
+                    $("#tablaMuseos").append("<tr class='altura2' id='fila"+key+"'>"+
+                    "<td class='xd'>"+value.nombre+"</td>"+
+                    "<td class='xd'>"+value.ubicacion+"</td>"+
+                    "<td class='xd'>"+value.tipo_museo+"</td>"+
+                    "</tr>") 
+                    
+                    $("#edit"+key).on("click", function(){
+                        //console.log(value)
+                        $('#tipoUsuarioUD').children().remove().end()
+
+                       
+                        if(value.tipo_user == 'U')
+                        {  
+                            $('#tipoUsuarioUD').append("<option class='selectusuarioU' value='U'>Usuario Final</option>")
+                            $('#tipoUsuarioUD').append("<option class='selectusuarioA' value='A'>Usuario del sistema</option>")
+                        }
+                        if(value.tipo_user == 'A')
+                        {  
+                            $('#tipoUsuarioUD').append("<option class='selectusuarioA' value='A'>Usuario del sistema</option>")
+                            $('#tipoUsuarioUD').append("<option class='selectusuarioU' value='U'>Usuario Final</option>")
+                        }
+                        
+
+                        var selector = 'idMuseoUsuarioUD'
+                        CargarMuseoUsuarios(selector);  
+                        $('#idMuseoUsuarioUD').append("<option id='optiontIdMuseos"+value.id_museo+"' value='"+value.id_museo+"'>--"+value.nombre+"--</option>")   
+                        cargarFormEditUsuarios(value)
+                    })
+
+                    $("#delete"+key).on("click", function(){
+                        //console.log(value)
+                        $('#tipoUsuarioUD').children().remove().end()
+
+                        if(value.tipo_user == 'U')
+                        {  
+                            $('#tipoUsuarioUD').append("<option class='selectusuarioU' value='U'>Usuario Final</option>")
+                        }
+                        if(value.tipo_user == 'A')
+                        {  
+                            $('#tipoUsuarioUD').append("<option class='selectusuarioA' value='A'>Usuario del sistema</option>")
+                        }
+                        
+                        
+                        var selector = 'idMuseoUsuarioUD'
+                        CargarMuseoUsuarios(selector);   
+                        $('#idMuseoUsuarioUD').append("<option id='optiontIdMuseos"+value.id_museo+"' value='"+value.id_museo+"'>--"+value.nombre+"--</option>")
+                        cargarFormDeleteUsuarios(value)
+                    })
+                    
+                    key = key + 1
+                    
+                    })
+                }
+            })
+        //}
+    }
+
+    $("#cargarTablaUsuarios").click(function(){
+        cargarTablaUsuarios();
+    })
+
+})
+
+</script>
+<style>
+.sex
+{
+    border: solid, red;
+}
+
+.xd
+{
+    text-align: center;
+}
+
+.iconsize
+{
+    height: auto;
+    width: auto;
+}
+.action
+{
+    height: 40px;
+    width: 40px;
+}
+
+.altura
+{
+    height: 40px;
+}
+.altura2
+{
+    height: 44px;
+}
+
+
+/*oculta las flechas del input Type=number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*oculta las flechas del input Type=number en firefox*/
+input[type=number] 
+{
+    -moz-appearance: textfield;
+}
+
+</style>
+</body>
+</html>
