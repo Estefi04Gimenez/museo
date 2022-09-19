@@ -11,4 +11,10 @@
     $q="INSERT INTO usuarios (nombre_completo, contraseña, dni, tel, email, tipo_user) VALUES ('$nombre','$cont','$dni','$tel','$email','$tipo')";
     $r = mysqli_query ($con,$q); 
 
+    if ($r) {
+        header("location: login-modal.html");
+        
+    }
+    
+
     ?>

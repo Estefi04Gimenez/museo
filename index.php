@@ -1,4 +1,13 @@
-
+<?php
+session_start();
+if (!isset($_SESSION['nombre-usuarios'])) {
+    
+    
+}
+else{
+    header('location: login-modal.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +41,7 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i><img src="dashboard/img/museo-40.png"></i>
                 </div>
@@ -44,7 +53,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i><img src="dashboard/img/menu20.png"></i>
                     <span>Inicio</span></a>
             </li>

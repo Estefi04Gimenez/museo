@@ -3,7 +3,7 @@
     require'conexion.php';
     $email= $_POST['email']; 
     
-    $cont= $_POST['contraseña'];
+    $cont= MD5($_POST['contraseña']);
     
     $q="SELECT * FROM usuarios WHERE email = '$email' AND contraseña = '$cont' ";
     
@@ -12,12 +12,12 @@
     if (mysqli_num_rows($r)>0) {
         session_start();
         $_SESSION ['nombre-usuarios']=$u;
-        header("location: index.html");
+        header("location: index.php");
         
     }
     else
     {
-        header("location: #.html");
+        header("location: login-modal.html");
         
     }
 
