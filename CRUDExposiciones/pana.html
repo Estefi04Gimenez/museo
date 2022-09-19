@@ -11,7 +11,7 @@
 </head>
 <body>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col">
                     <h1>Consulta a base de datos</h1>      
@@ -121,7 +121,7 @@
                     <table class="table table-bordered table-hover table-striped table-sm">
                         <thead>
                             <tr>
-                                <th class='xd '>Acciones</th>
+                                <th class='xd' style="width: 140px;">Acciones</th>
                                 <th class='xd '>ID Exposicion</th>
                                 <th class='xd '>Fecha de Inicio</th>
                                 <th class='xd '>Fecha de Finalizacion</th>
@@ -271,7 +271,7 @@ $(document).ready(function()
         data: {"funcion": 5, "fechaActual": fecha},
         success: function(r)
         {
-            if (r == 11) 
+            if (r == 111) 
                 {
 
                 alert("Fechas Actualizadas")
@@ -529,7 +529,7 @@ $(document).ready(function()
                 "<td class='xd'>"+value.fecha_finalizacion+"</td>"+
                 "<td class='xd'>"+value.descripcion+"</td>"+
                 "<td class='xd'>"+value.numero+"</td>"+
-                "<td class='xd'>"+value.estado+"</td>"+
+                "<td class='xd celda"+value.estado+"'>"+value.estado+"</td>"+
                 "<td class='xd'>"+value.id_sala+"</td>"+
                 "</tr>") 
 
@@ -554,6 +554,10 @@ $(document).ready(function()
                 {
                     $('#refresh'+key).attr('hidden', false)
                 }
+
+                $('.celda2').html('Terminado: 2')
+                $('.celda1').html('En exposicion: 1')
+                $('.celda0').html('Pendiente: 0')
 
                 $("#edit"+key).on("click", function(){
                     //console.log("Editar", value)
@@ -593,14 +597,17 @@ $(document).ready(function()
 .estado0
 {
     background-color: lightblue;
+    width: 200;
 }
 .estado1
 {
     background-color: lightgreen;
+    width: 200;
 }
 .estado2
 {
     background-color: lightcoral;
+    width: 200px;
 }
 
 .xd
