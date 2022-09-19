@@ -1,7 +1,7 @@
 <?php
 require 'conexion.php';
 
-$id = $_POST['idUD'];
+$id = $_POST['idUDMuseo'];
 $nombre = $_POST['nombreMuseoUD'];
 $ubicacion = $_POST['ubicacionUD'];
 $tipo = $_POST['tipoMuseoUD'];
