@@ -18,12 +18,20 @@
                 </div>
             </div>
             <div class="row justify-content-between">
-                <div class="col-2">
-                    <button id="cargarTablaGuias" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
+                <div class="d-grid col-2">
+                    <input type="date" class="form-control text-center mb-2 " name="fechaActual" id="fechaActual" readonly> 
                 </div>
                 <div class="d-grid col-2">
-                    <button id="botonModal" type="button" class="btn text-center mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#myModalGuias">+</button>
-                </div>           
+                    <button id="botonModal" type="button" class="btn text-center mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#myModalGuias">+</button>    
+                </div>
+            </div>
+            <div class="row ">
+                <div class="d-grid  col-2">
+                    <button id="cargarTablaGuias" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
+                </div>          
+                <div class="d-grid  col-2">
+                    <button id="acualizarEstados" type="button" class="btn text-center mb-2 btn-secondary">Actualizar Tabla</button>
+                </div>  
             </div>
             <!-- The Modal --> 
             <div class="modal fade" data-bs-backdrop="static" id="myModalGuias">
@@ -147,48 +155,54 @@
                                         <div class="modal-body">
                                             <div class="col">                                        
                                                 <label for="texto de ejemplo" class="form-label">Estado</label>
-                                                <input name="estadoUD" type="text" id="estadoUD" min="0" max="150" placeholder="" class="form-control">        
+                                                <input name="estadoUDGuias" type="text" id="estadoUDGuias" min="0" max="150" placeholder="" class="form-control">        
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">N° Personas Registradas</label>
-                                                    <input name="cantidadRegistradaUD" type="number" id="cantidadRegistradaUD" min="0" max="150" placeholder="" class="form-control">        
+                                                    <input name="cantidadRegistradaUDGuias" type="number" id="cantidadRegistradaUDGuias" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Cupo maximo</label>
-                                                    <input name="cupoMaximoUD" type="text" id="cupoMaximoUD" min="0" max="11" placeholder="" class="form-control">        
+                                                    <input name="cupoMaximoUDGuias" type="text" id="cupoMaximoUDGuias" min="0" max="11" placeholder="" class="form-control">        
                                                 </div>
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Costo</label>
-                                                    <input name="costoUD" type="text" id="costoUD" min="0" max="150" placeholder="" class="form-control">        
+                                                    <input name="costoUDGuias" type="text" id="costoUDGuias" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Fecha</label>
-                                                    <input name="fechaUD" type="text" id="fechaUD" min="0" max="11" placeholder="" class="form-control">        
+                                                    <input name="fechaUDGuias" type="text" id="fechaUDGuias" min="0" max="11" placeholder="" class="form-control">        
                                                 </div>
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Hora</label>
-                                                    <input name="horaUD" type="text" id="horaUD" min="0" max="11" placeholder="" class="form-control">        
+                                                    <input name="horaUDGuias" type="text" id="horaUDGuias" min="0" max="11" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Idioma</label>
-                                                    <input name="idiomaUD" type="text" id="idiomaUD" min="0" max="150" placeholder="" class="form-control">        
+                                                    <input name="descripcionUDGuias" type="text" id="descripcionUDGuias" min="0" max="150" placeholder="" class="form-control">        
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">                                        
+                                                    <label for="texto de ejemplo" class="form-label">Idioma</label>
+                                                    <input name="idiomaUDGuias" type="text" id="idiomaUDGuias" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Guia</label>
-                                                    <input name="guiaUD" type="text" id="guiaUD" min="0" max="150" placeholder="" class="form-control">        
+                                                    <input name="guiaUDGuias" type="text" id="guiaUDGuias" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">                                        
                                                     <label for="texto de ejemplo" class="form-label">Tipo de Guia</label>
-                                                    <input name="tipoUD" type="text" id="tipoUD" min="0" max="150" placeholder="" class="form-control">        
+                                                    <input name="tipoUDGuias" type="text" id="tipoUDGuias" min="0" max="150" placeholder="" class="form-control">        
                                                 </div>
                                             </div>
                                             
@@ -204,6 +218,30 @@
                             </div>
                         </div>  
                     </div>
+
+                    <!--div class="col">   
+                        <table class="table table-bordered table-hover table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th class='xd'>Acciones</th>
+                                    <th class='xd'>ID Guia</th>
+                                    <th class='xd'>Tipo</th>
+                                    <th class='xd'>Idioma</th>
+                                    <th class='xd'>Costo</th>
+                                    <th class='xd'>Descripción</th>
+                                    <th class='xd'>Guia</th>
+                                    <th class='xd'>Fecha</th>
+                                    <th class='xd'>Hora</th>
+                                    <th class='xd'>N° Personas Registrada</th>
+                                    <th class='xd'>Cupo Maximo</th>
+                                    <th class='xd'>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody  id="tablaGuiasYUsuarios">
+                               
+                            </tbody>
+                        </table>    
+                    </div-->
                 <!--</div>-->
             </div>
         </div>
@@ -214,6 +252,25 @@
 
 $(document).ready(function()
 {
+    function recuperarFecha()
+    {
+
+    //recupera la fecha
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    const formattedToday = dd + '-' + mm + '-' + yyyy;
+    var fecha = yyyy + '-' + mm + '-' + dd;//formato que se muestra en pantalla
+
+    console.log(formattedToday)
+    $("#fechaActual").val(fecha)
+    }
+    recuperarFecha();
     
     async function confirmAddGuias()
     {
@@ -239,9 +296,43 @@ $(document).ready(function()
     }
     $("#addDataGuias").on("click", function(){confirmAddGuias() }) 
 
+    function actualizarFechas()
+    {
+        var fecha = $("#fechaActual").val();
+        console.log(fecha)
+        //console.log(editarDatos)
+        //editarDatos.push({"name": 'funcion', "value": '1'})
+        //console.log(editarDatos)
+        
+       $.ajax({
+        url: "RenameGuias.php",
+        type: "POST",
+        data: {"funcion": 5, "fechaActual": fecha},
+        success: function(r)
+        {
+            if (r == 1) 
+                {
+
+                //alert("Fechas Actualizadas")
+                //$("#ordenarNomb").val(exposicionesUD.value)
+                cargarTablaGuias()
+                //$("#modalUD").modal('hide')
+
+                }
+            }
+        })
+    }
+    
+    $('#acualizarEstados').on('click', function(){
+        actualizarFechas()
+    })
+
     function confirmEditGuias()
     {
         var editarDatos = $("#formUDGuias").serializeArray();
+        editarDatos.push({"name": 'funcion', "value": '1'})
+        console.log(editarDatos)
+
         $.ajax({
         url: "RenameGuias.php",
         type: "POST",
@@ -293,45 +384,45 @@ $(document).ready(function()
         $("#idUDGuias").val(value.id_guia)
         $("#idUDGuias").attr('placeholder', value.id_guia) 
         
-        $("#tipoUD").val(value.tipo)
-        $("#tipoUD").attr('placeholder', value.tipo) 
-        $("#tipoUD").attr('readonly', false)
+        $("#tipoUDGuias").val(value.tipo)
+        $("#tipoUDGuias").attr('placeholder', value.tipo) 
+        $("#tipoUDGuias").attr('readonly', false)
         
-        $("#idiomaUD").val(value.idioma)
-        $("#idiomaUD").attr('placeholder', value.idioma) 
-        $("#idiomaUD").attr('readonly', false)
+        $("#idiomaUDGuias").val(value.idioma)
+        $("#idiomaUDGuias").attr('placeholder', value.idioma) 
+        $("#idiomaUDGuias").attr('readonly', false)
         
-        $("#costoUD").val(value.costo)
-        $("#costoUD").attr('placeholder', value.costo) 
-        $("#costoUD").attr('readonly', false)
+        $("#costoUDGuias").val(value.costo)
+        $("#costoUDGuias").attr('placeholder', value.costo) 
+        $("#costoUDGuias").attr('readonly', false)
 
-        $("#descripcionUD").val(value.descripcion)
-        $("#descripcionUD").attr('placeholder', value.descripcion) 
-        $("#descripcionUD").attr('readonly', false)
+        $("#descripcionUDGuias").val(value.descripcion)
+        $("#descripcionUDGuias").attr('placeholder', value.descripcion) 
+        $("#descripcionUDGuias").attr('readonly', false)
 
-        $("#fechaUD").val(value.fecha)
-        $("#fechaUD").attr('placeholder', value.fecha) 
-        $("#fechaUD").attr('readonly', false)
+        $("#fechaUDGuias").val(value.fecha)
+        $("#fechaUDGuias").attr('placeholder', value.fecha) 
+        $("#fechaUDGuias").attr('readonly', false)
 
-        $("#horaUD").val(value.hora)
-        $("#horaUD").attr('placeholder', value.hora) 
-        $("#horaUD").attr('readonly', false)
+        $("#horaUDGuias").val(value.hora)
+        $("#horaUDGuias").attr('placeholder', value.hora) 
+        $("#horaUDGuias").attr('readonly', false)
         
-        $("#cantidadRegistradaUD").val(value.cantidad_registrado)
-        $("#cantidadRegistradaUD").attr('placeholder', value.cantidad_registrado) 
-        $("#cantidadRegistradaUD").attr('readonly', false)
+        $("#cantidadRegistradaUDGuias").val(value.cantidad_registrado)
+        $("#cantidadRegistradaUDGuias").attr('placeholder', value.cantidad_registrado) 
+        $("#cantidadRegistradaUDGuias").attr('readonly', false)
         
-        $("#cupoMaximoUD").val(value.cupo_max)
-        $("#cupoMaximoUD").attr('placeholder', value.cupo_max) 
-        $("#cupoMaximoUD").attr('readonly', false)
+        $("#cupoMaximoUDGuias").val(value.cupo_max)
+        $("#cupoMaximoUDGuias").attr('placeholder', value.cupo_max) 
+        $("#cupoMaximoUDGuias").attr('readonly', false)
         
-        $("#estadoUD").val(value.estado)
-        $("#estadoUD").attr('placeholder', value.estado) 
-        $("#estadoUD").attr('readonly', false)
+        $("#estadoUDGuias").val(value.estado)
+        $("#estadoUDGuias").attr('placeholder', value.estado) 
+        $("#estadoUDGuias").attr('readonly', false)
 
-        $("#guiaUD").val(value.guia)
-        $("#guiaUD").attr('placeholder', value.guia) 
-        $("#guiaUD").attr('readonly', false)
+        $("#guiaUDGuias").val(value.guia)
+        $("#guiaUDGuias").attr('placeholder', value.guia) 
+        $("#guiaUDGuias").attr('readonly', false)
     }
     
 
@@ -343,41 +434,41 @@ $(document).ready(function()
         $("#idUDGuias").val(value.id_guia)
         $("#idUDGuias").attr('placeholder', value.id_guia) 
         
-        $("#tipoUD").val(value.tipo)
-        $("#tipoUD").attr('placeholder', value.tipo) 
-        $("#tipoUD").attr('readonly', true)
+        $("#tipoUDGuias").val(value.tipo)
+        $("#tipoUDGuias").attr('placeholder', value.tipo) 
+        $("#tipoUDGuias").attr('readonly', true)
         
-        $("#idiomaUD").val(value.idioma)
-        $("#idiomaUD").attr('placeholder', value.idioma) 
-        $("#idiomaUD").attr('readonly', true)
+        $("#idiomaUDGuias").val(value.idioma)
+        $("#idiomaUDGuias").attr('placeholder', value.idioma) 
+        $("#idiomaUDGuias").attr('readonly', true)
         
-        $("#costoUD").val(value.costo)
-        $("#costoUD").attr('placeholder', value.costo) 
-        $("#costoUD").attr('readonly', true)
+        $("#costoUDGuias").val(value.costo)
+        $("#costoUDGuias").attr('placeholder', value.costo) 
+        $("#costoUDGuias").attr('readonly', true)
 
-        $("#descripcionUD").val(value.descripcion)
-        $("#descripcionUD").attr('placeholder', value.descripcion) 
-        $("#descripcionUD").attr('readonly', true)
+        $("#descripcionUDGuias").val(value.descripcion)
+        $("#descripcionUDGuias").attr('placeholder', value.descripcion) 
+        $("#descripcionUDGuias").attr('readonly', true)
 
-        $("#fechaUD").val(value.fecha)
-        $("#fechaUD").attr('placeholder', value.fecha) 
-        $("#fechaUD").attr('readonly', true)
+        $("#fechaUDGuias").val(value.fecha)
+        $("#fechaUDGuias").attr('placeholder', value.fecha) 
+        $("#fechaUDGuias").attr('readonly', true)
 
-        $("#horaUD").val(value.hora)
-        $("#horaUD").attr('placeholder', value.hora) 
-        $("#horaUD").attr('readonly', true)
+        $("#horaUDGuias").val(value.hora)
+        $("#horaUDGuias").attr('placeholder', value.hora) 
+        $("#horaUDGuias").attr('readonly', true)
         
-        $("#cantidadRegistradaUD").val(value.cantidad_registrado)
-        $("#cantidadRegistradaUD").attr('placeholder', value.cantidad_registrado) 
-        $("#cantidadRegistradaUD").attr('readonly', true)
+        $("#cantidadRegistradaUDGuias").val(value.cantidad_registrado)
+        $("#cantidadRegistradaUDGuias").attr('placeholder', value.cantidad_registrado) 
+        $("#cantidadRegistradaUDGuias").attr('readonly', true)
         
-        $("#cupoMaximoUD").val(value.cupo_max)
-        $("#cupoMaximoUD").attr('placeholder', value.cupo_max) 
-        $("#cupoMaximoUD").attr('readonly', true)
+        $("#cupoMaximoUDGuias").val(value.cupo_max)
+        $("#cupoMaximoUDGuias").attr('placeholder', value.cupo_max) 
+        $("#cupoMaximoUDGuias").attr('readonly', true)
         
-        $("#estadoUD").val(value.estado)
-        $("#estadoUD").attr('placeholder', value.estado) 
-        $("#estadoUD").attr('readonly', true)
+        $("#estadoUDGuias").val(value.estado)
+        $("#estadoUDGuias").attr('placeholder', value.estado) 
+        $("#estadoUDGuias").attr('readonly', true)
     }
     
     function cargarTablaGuias()
@@ -400,8 +491,8 @@ $(document).ready(function()
                     //console.log("Key: " , key)
                     //console.log("Value: " , value)
 
-                    $("#tablaGuias").append("<tr id='fila"+key+"'>"+
-                    "<td class='xd'>"+
+                    $("#tablaGuias").append("<tr class='estado"+value.estado+"' id='fila"+key+"'>"+
+                    "<td class='xd xdwidth'>"+
                         "<div class='btn-group' role='group' aria-label='Basic example'>"+
                             "<button class='btn btn-sm btn-success text-center' id='edit"+key+"' data-bs-toggle='modal' data-bs-target='#modalUDGuias' >"+
                                 "<img class='iconsize' src='../iconos/edit-3.svg'>"+
@@ -409,7 +500,13 @@ $(document).ready(function()
                             "<button class='btn btn-sm btn-danger text-center' id='delete"+key+"' data-bs-toggle='modal' data-bs-target='#modalUDGuias' >"+
                                 "<img class='iconsize' src='../iconos/trash-2.svg'>"+
                             "</button>"+
+                            "<button class='btn btn-sm btn-secondary text-center' id='registros"+key+"' data-bs-toggle='modal' data-bs-target='#modalUDGuias' >"+
+                                "<img class='iconsize' src='../iconos/users.svg'>"+
+                            "</button>"+
                         "</div>"+
+                            "<button class='btn btn-sm btn-warning text-center' id='refresh"+key+"''>"+
+                            "<img class='iconsize' src='../iconos/refresh-ccw.svg'>"+
+                        "</button>"+
                     "</td>"+
                     "<td class='xd'>"+value.id_guia+"</td>"+
                     "<td class='xd'>"+value.tipo+"</td>"+
@@ -423,6 +520,18 @@ $(document).ready(function()
                     "<td class='xd'>"+value.cupo_max+"</td>"+
                     "<td class='xd'>"+value.estado+"</td>"+
                     "</tr>") 
+
+                    $('#refresh'+key).attr('hidden', true)
+
+                    if ($("#fechaActual").val() <= value.fecha && value.estado != 0) 
+                    {
+                        $('#refresh'+key).attr('hidden', false)
+                    }
+                    if ($("#fechaActual").val() > value.fecha && value.estado != 1) 
+                    {
+                        $('#refresh'+key).attr('hidden', false)
+                    }
+
                     
                     $("#edit"+key).on("click", function(){
                         //console.log(value)
@@ -450,11 +559,18 @@ $(document).ready(function()
 
 </script>
 <style>
-.sex
+.xdwidth
 {
-    border: solid, red;
+    width: 200px;
 }
-
+.estado0
+{
+    background-color: lightblue;
+}
+.estado1
+{
+    background-color: lightcoral;
+}
 .xd
 {
     text-align: center;

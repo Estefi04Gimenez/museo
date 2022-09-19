@@ -274,7 +274,7 @@ $(document).ready(function()
             if (r == 111) 
                 {
 
-                alert("Fechas Actualizadas")
+                //alert("Fechas Actualizadas")
                 //$("#ordenarNomb").val(exposicionesUD.value)
                 cargarTablaExposiciones()
                 //$("#modalUD").modal('hide')
@@ -509,7 +509,7 @@ $(document).ready(function()
                 //console.log("Value: " , value)
 
                 $("#tablaExposiciones").append("<tr class='estado"+value.estado+"' id='fila"+key+"'>"+
-                "<td class='xd'>"+
+                "<td class='xd xdwidth'>"+
                     "<div class='btn-group' role='group' aria-label='Basic example'>"+
                         "<button class='btn btn-sm btn-success text-center' id='edit"+key+"' data-bs-toggle='modal' data-bs-target='#modalUD'>"+
                             "<img class='iconsize' src='../iconos/edit-3.svg'>"+
@@ -597,7 +597,10 @@ $(document).ready(function()
 
 </script>
 <style>
-
+.xdwidth
+{
+    width: 200px;
+}
 .estado0
 {
     background-color: lightblue;

@@ -1,17 +1,17 @@
 <?php
 require 'conexion.php';
 
-$id = $_POST['idUD'];
-$tipo = $_POST['tipoUD'];
-$idioma = $_POST['idiomaUD'];
-$costo = $_POST['costoUD'];
-$descripcion = $_POST['descripcionUD'];
-$fecha = $_POST['fechaUD'];
-$hora = $_POST['horaUD'];
-$guia = $_POST['guiaUD'];
-$cantidad_registrado = $_POST['sala'];
-$cupo_max = $_POST['cupoMaximoUD'];
-$estado = $_POST['estadoUD'];
+$id = $_POST['idUDGuias'];
+$tipo = $_POST['tipoUDGuias'];
+$idioma = $_POST['idiomaUDGuias'];
+$costo = $_POST['costoUDGuias'];
+$descripcion = $_POST['descripcionUDGuias'];
+$fecha = $_POST['fechaUDGuias'];
+$hora = $_POST['horaUDGuias'];
+$guia = $_POST['guiaUDGuias'];
+$cantidad_registrado = $_POST['cantidadRegistradaUDGuias'];
+$cupo_max = $_POST['cupoMaximoUDGuias'];
+$estado = $_POST['estadoUDGuias'];
 
 
 
