@@ -54,8 +54,8 @@
                 <ul>
                     <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Inicio</span></a></li>
                     <li><a href="#about" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Visitas</span></a></li>
-                    <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Que Somos?</span></a></li>
-                    <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Explorar</span></a></li>
+                    <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Accesos</span></a></li>
+                    <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Exposiciones</span></a></li>
                     <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Servicios</span></a></li>
                     <li><a href="javascript:login()" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Login</span></a></li>
                 </ul>
@@ -517,111 +517,112 @@
 
 
     <!-- MODAL -->
-<div class="modal fade " id="login" style="padding-top: 4rem;" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal fade " id="login" style="padding-top: 4rem;" role="dialog">
+        <div class="modal-dialog">
 
-    <!-- CONTENIDO DEL MODAL-->
-    <div class="col-9 modal-content">
-        <div class="modal-header"  >
-            <a href="javascript:cerrar()" class="close m-2"><i ></i> <span>&times;</span></a>
-            
-            <h4> LOGIN</h4>
-        </div>
-        <div class="modal-body" style="padding:40px 50px;">
-            <form  method="POST" action="login.php">
-                
-                <div class="form-group">
-                    <label for=""> Email</label>
-                    <input type="email" class="form-control"  name="email" placeholder="Email@gmail.com">
+            <!-- CONTENIDO DEL MODAL-->
+            <div class="col-9 modal-content">
+                <div class="modal-header">
+                    <a href="javascript:cerrar()" class="close m-2"><i ></i> <span>&times;</span></a>
+
+                    <h4> LOGIN</h4>
                 </div>
-                <div class="form-group">
-                    <label for=""> Password</label>
-                    <input type="password" class="form-control" name="contraseña" placeholder="*****">
-                </div><br>
-                <div class="row  justify-content-center m-auto">
-                    <button type="submit" class="btn btn-primary " > INGRESAR</button>
-                    </div>
-                </form>
-                <div class="modal-footer">
-                    <div class="forgot login-footer">
-                        <span>No estas registrado? </span>
-                            <a class="text-primary" id="registrar">Registrate</a>
-                        
-                    </div>
-                </div>
-        </div>
-        
-    </div>
-</div>
-</div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form method="POST" action="login.php">
 
-<div class="modal fade " id="registrarse" style="padding-top: 4rem;" role="dialog">
-    <div class="modal-dialog">
-    <!-- CONTENIDO DEL MODAL-->
-    <div class="col-9 modal-content">
-        <div class="modal-header"  style="padding:35px 50px;">
-
-            <a href="javascript:cerrar()" class="close"><i ></i> <span>&times;</span></a>
-            <h4> Registrarse</h4>
-        </div>
-        <div class="modal-body" style="padding:40px 50px;">
-                <form  method="POST" action="registrarse.php">
-                    <div class="form-group">
-                        <label for=""> Nombre Completo</label>
-                        <input type="text" class="form-control"  name="reg_nombre_completo" placeholder="Nombre Apellido">
-                    </div>
-                    <div class="form-group">
-                        <label for=""> DNI</label>
-                        <input type="text" class="form-control"  name="reg_dni" placeholder="00 111 222">
-                    </div>
-                    <div class="form-group">
-                        <label for=""> Telefono</label>
-                        <input type="text" class="form-control"  name="reg_tel" placeholder="0011 223344">
-                    </div>
-                    <div class="form-group">
-                        <label for=""> Email</label>
-                        <input type="email" class="form-control"  name="reg_email" placeholder="Email@gmail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for=""> Password</label>
-                        <input type="password" class="form-control" name="reg_contraseña" placeholder="*****">
-                    </div><br>
-                    <div class="row  justify-content-center m-auto">
-                    <button type="submit" class="btn btn-primary " > REGISTRAR</button>
-                    </div>
+                        <div class="form-group">
+                            <label for=""> Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Email@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Password</label>
+                            <input type="password" class="form-control" name="contraseña" placeholder="*****">
+                        </div><br>
+                        <div class="row  justify-content-center m-auto">
+                            <button type="submit" class="btn btn-primary "> INGRESAR</button>
+                        </div>
                     </form>
-                <div class="modal-footer">
-                    <div class="forgot register-footer" >
-                        <span>Ya estas registrado?</span>
-                        <a href="javascript:login()" >Inicia Sesion</a>
+                    <div class="modal-footer">
+                        <div class="forgot login-footer">
+                            <span>No estas registrado? </span>
+                            <a class="text-primary" id="registrar">Registrate</a>
+
+                        </div>
                     </div>
                 </div>
+
+            </div>
         </div>
     </div>
-</div>
-</div>
 
-<!--JS Y JQUERY DEL MODAL-->
-<script>
-    function login(){
-        $('#registrarse').modal('hide');
-        $('#login').modal('show');
-    }
-    function cerrar(){
-        $('#registrarse').modal('hide');
-        $('#login').modal('hide');
-    }
-    $('document').ready(function(){
-        //$('#cerrar').click(function(){
-        //$('#login').modal('hide');
-        $('#registrar').click(function(){
-        $('#login').modal('hide');
-        $('#registrarse').modal('show');
-    })
-    })
-    
-//})
-</script>
+    <div class="modal fade " id="registrarse" style="padding-top: 4rem;" role="dialog">
+        <div class="modal-dialog">
+            <!-- CONTENIDO DEL MODAL-->
+            <div class="col-9 modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+
+                    <a href="javascript:cerrar()" class="close"><i ></i> <span>&times;</span></a>
+                    <h4> Registrarse</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form method="POST" action="registrarse.php">
+                        <div class="form-group">
+                            <label for=""> Nombre Completo</label>
+                            <input type="text" class="form-control" name="reg_nombre_completo" placeholder="Nombre Apellido">
+                        </div>
+                        <div class="form-group">
+                            <label for=""> DNI</label>
+                            <input type="text" class="form-control" name="reg_dni" placeholder="00 111 222">
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Telefono</label>
+                            <input type="text" class="form-control" name="reg_tel" placeholder="0011 223344">
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Email</label>
+                            <input type="email" class="form-control" name="reg_email" placeholder="Email@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Password</label>
+                            <input type="password" class="form-control" name="reg_contraseña" placeholder="*****">
+                        </div><br>
+                        <div class="row  justify-content-center m-auto">
+                            <button type="submit" class="btn btn-primary "> REGISTRAR</button>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div class="forgot register-footer">
+                            <span>Ya estas registrado?</span>
+                            <a href="javascript:login()">Inicia Sesion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--JS Y JQUERY DEL MODAL-->
+    <script>
+        function login() {
+            $('#registrarse').modal('hide');
+            $('#login').modal('show');
+        }
+
+        function cerrar() {
+            $('#registrarse').modal('hide');
+            $('#login').modal('hide');
+        }
+        $('document').ready(function() {
+            //$('#cerrar').click(function(){
+            //$('#login').modal('hide');
+            $('#registrar').click(function() {
+                $('#login').modal('hide');
+                $('#registrarse').modal('show');
+            })
+        })
+
+        //})
+    </script>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
