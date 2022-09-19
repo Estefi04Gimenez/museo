@@ -5,7 +5,7 @@ $funcion = $_POST['funcion'];
 
 if($funcion < 5)
 {
-  $q = "SELECT id_museo,nombre FROM museos ";
+  $q = "SELECT * FROM museos ";
   
   $r = mysqli_query($con, $q);
   
@@ -29,9 +29,14 @@ if($funcion < 5)
 
 if($funcion > 5)
 {
-  $id = $_POST['id_museo'];
+  $museo = $_POST['id_museo'];
 
-  $q = "SELECT * FROM salas WHERE id_museo = '$id'";
+  $q = "SELECT * FROM salas,museos WHERE museos.id_museo = salas.id_museo";
+
+  if($museo != 0)
+  {
+    $q = $q." AND salas.id_museo = $museo";
+  }
 
   $r = mysqli_query($con, $q);
 

@@ -17,18 +17,23 @@
                       <h1>Consulta a base de datos</h1>      
                 </div>
             </div>
-            <div class="row justify-content-between">
-                <div class="col-2">
-                    <button id="cargarTablaSalas" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
-                </div>
-                <div class="col-2">
-                    <select class="form-control" name="selectMuseos" id="selectMuseos">
-                        <option id='optiontMuseos' value='0'>Seleccione un museo</option>
-                    </select>
-                </div>
+            <div class="row justify-content-end">
                 <div class="d-grid col-2">
                     <button id="botonModalSalas" type="button" class="btn text-center mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#myModalSalas">+</button>
-                </div>           
+                </div>   
+            </div>
+            <div class="row justify-content-between">
+                <div class="d-grid col-4">
+                    <button id="cargarTablaSalas" type="button" class="btn text-center mb-2 btn-primary">Cargar Tabla</button>
+                </div>
+                <div class="d-grid col-3">
+                    <select class="form-control mb-2" name="selectMuseos" id="selectMuseos">
+                        <option id='optiontMuseos' value='0'>--Seleccione un museo--</option>
+                    </select>
+                </div> 
+                <div class="d-grid col-5">
+                    <button id="ocultarTablaRelacionada" class="btn text-center mb-2 btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#tablaRelacionada" aria-expanded="false">Ocultar/Mostrar Tabla Relacionada</button>
+                </div>       
             </div>
             <!-- The Modal --> 
             <div class="modal fade" data-bs-backdrop="static" id="myModalSalas">
@@ -89,7 +94,7 @@
             </div>   
             
             <div class="row">
-                <div class="col">   
+                <div class="col-7">   
                     <table class="table table-bordered table-hover table-striped table-sm">
                         <thead>
                             <tr>
@@ -103,6 +108,20 @@
                             </tr>
                         </thead>
                         <tbody  id="tablaSalas">
+                           
+                        </tbody>
+                    </table>    
+                </div>
+                <div class="collapse col-5" id="tablaRelacionada">   
+                    <table class="table table-bordered table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th class='xd'>Acciones</th>
+                                <th class='xd'>ID Museo</th>
+                                <th class='xd'>Nombre de Museo</th>
+                            </tr>
+                        </thead>
+                        <tbody  id="tablaMuseos">
                            
                         </tbody>
                     </table>    
@@ -350,6 +369,8 @@ $(document).ready(function()
     function cargarTablaSalas()
     {   
     $("#tablaSalas").empty()
+    $("#tablaMuseos").empty()    
+
         var idMuseo = $('#selectMuseos').val()
         $.ajax({
         url: "BackendSalas.php", 
@@ -384,7 +405,13 @@ $(document).ready(function()
                 "<td class='xd'>"+value.punto_inteligente+"</td>"+
                 "<td class='xd'>"+value.id_museo+"</td>"+
                 "</tr>") 
-                
+
+                $("#tablaMuseos").append("<tr class='altura2' id='fila"+key+"'>"+
+                    "<td class='xd'>"+value.nombre+"</td>"+
+                    "<td class='xd'>"+value.ubicacion+"</td>"+
+                    "<td class='xd'>"+value.tipo_museo+"</td>"+
+                "</tr>") 
+
                 $("#edit"+key).on("click", function(){
                     //console.log(value)
                     cargarFormEditSalas(value)
@@ -436,7 +463,10 @@ $(document).ready(function()
 {
     height: 40px;
 }
-
+.altura2
+{
+    height: 44px;
+}
 /*oculta las flechas del input Type=number*/
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button 
